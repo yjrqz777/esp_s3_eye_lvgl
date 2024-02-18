@@ -1394,3 +1394,5 @@
 6002	6286	7299744903456387	E:/Documents/esp32/code/esp_s3_eye_lvgl/build/.bin_timestamp	83247796fc5dc199
 6287	6357	0	esp-idf/esptool_py/CMakeFiles/app_check_size	3365990068720047
 6287	6357	0	E:/Documents/esp32/code/esp_s3_eye_lvgl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	3365990068720047
+0	1429176	0	CMakeFiles/confserver	798e5a37dc0c7bdd
+0	1429176	0	E:/Documents/esp32/code/esp_s3_eye_lvgl/build/CMakeFiles/confserver	798e5a37dc0c7bdd
