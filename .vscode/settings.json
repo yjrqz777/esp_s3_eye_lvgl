@@ -1,0 +1,17 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.adapterTargetName": "esp32s3",
+  "idf.openOcdConfigs": [
+    "board/esp32s3-bridge.cfg"
+  ],
+  "idf.portWin": "COM3",
+  "idf.flashType": "UART",
+  "files.associations": {
+    "*.tcc": "c",
+    "string": "c",
+    "esp_log.h": "c",
+    "lv_gif.h": "c",
+    "lvgl.h": "c",
+    "lv_async.h": "c"
+  }
+}

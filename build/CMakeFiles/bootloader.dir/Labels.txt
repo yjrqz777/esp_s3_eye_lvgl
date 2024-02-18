@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/CMakeFiles/bootloader
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/CMakeFiles/bootloader.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/CMakeFiles/bootloader-complete.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+E:/Documents/esp32/code/esp_s3_eye_lvgl/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

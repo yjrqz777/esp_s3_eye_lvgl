@@ -1,0 +1,6 @@
+source "F:/Espressif/frameworks/esp-idf-v5.0.2/components/bootloader/Kconfig.projbuild"
+source "F:/Espressif/frameworks/esp-idf-v5.0.2/components/esp_app_format/Kconfig.projbuild"
+source "F:/Espressif/frameworks/esp-idf-v5.0.2/components/esp_rom/Kconfig.projbuild"
+source "F:/Espressif/frameworks/esp-idf-v5.0.2/components/esptool_py/Kconfig.projbuild"
+source "F:/Espressif/frameworks/esp-idf-v5.0.2/components/partition_table/Kconfig.projbuild"
+source "E:/Documents/esp32/code/esp_s3_eye_lvgl/main/Kconfig.projbuild"
