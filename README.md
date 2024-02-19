@@ -6,3 +6,6 @@
 # esp_idf:5.04
 
 
+Online Image Converter : https://lvgl.io/tools/imageconverter
+
+在线gif剪切网站 : https://tool.lu/gifscaler/
