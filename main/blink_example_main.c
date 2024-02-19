@@ -54,12 +54,13 @@ void app_main(void)
     // lv_demo_music();
     // lv_demo_stress();
     test_main();
-
+    while (true)
     {
+
         /* Delay 1 tick (assumes FreeRTOS tick is 10ms */
         lv_task_handler();
-        lv_tick_inc(10);
-        vTaskDelay(pdMS_TO_TICKS(10));        
+        // lv_tick_inc(10);
+        vTaskDelay(pdMS_TO_TICKS(10));     
         // vTaskDelay(10 / portTICK_PERIOD_MS);
         
     }

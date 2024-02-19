@@ -243,14 +243,14 @@
         #ifdef CONFIG_LV_TICK_CUSTOM_INCLUDE
             #define LV_TICK_CUSTOM_INCLUDE CONFIG_LV_TICK_CUSTOM_INCLUDE
         #else
-            #define LV_TICK_CUSTOM_INCLUDE "Arduino.h"         /*Header for the system time function*/
+            #define LV_TICK_CUSTOM_INCLUDE "esp_timer.h"
         #endif
     #endif
     #ifndef LV_TICK_CUSTOM_SYS_TIME_EXPR
         #ifdef CONFIG_LV_TICK_CUSTOM_SYS_TIME_EXPR
             #define LV_TICK_CUSTOM_SYS_TIME_EXPR CONFIG_LV_TICK_CUSTOM_SYS_TIME_EXPR
         #else
-            #define LV_TICK_CUSTOM_SYS_TIME_EXPR (millis())    /*Expression evaluating to current system time in ms*/
+            #define LV_TICK_CUSTOM_SYS_TIME_EXPR ((esp_timer_get_time() / 1000LL))
         #endif
     #endif
     /*If using lvgl as ESP32 component*/
