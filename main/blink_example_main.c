@@ -12,6 +12,8 @@
 #include "lv_port_disp.h"
 
 #include "test_ui.h"
+
+#include "key.hpp"
 #define TAG "main"
  
  
@@ -44,6 +46,8 @@ void app_main(void)
     // disp_drv.draw_buf = &disp_buf;
     // lv_disp_drv_register(&disp_drv);
 
+
+
     const esp_timer_create_args_t periodic_timer_args = {
         .callback = &lv_tick_task,
         .name = "periodic_gui"};
@@ -53,7 +57,12 @@ void app_main(void)
     // lvgl demo演示
     // lv_demo_music();
     // lv_demo_stress();
+    // extern void adc_init(void);
+
     test_main();
+
+    adc_init();
+
     while (true)
     {
 
