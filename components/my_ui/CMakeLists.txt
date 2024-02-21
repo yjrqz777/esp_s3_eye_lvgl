@@ -5,4 +5,4 @@ idf_component_register(
     REQUIRES lvgl 
 )
 
-file(GLOB_RECURSE SOURCES "./include/astro.c" "./include/xxxx.c")
+file(GLOB_RECURSE SOURCES "./include/astro.c" "./include/xxxx.c" "./include/songti.c")

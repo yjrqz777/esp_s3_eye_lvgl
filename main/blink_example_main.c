@@ -14,6 +14,9 @@
 #include "test_ui.h"
 
 #include "key.hpp"
+
+#include "main_cpp.hpp"
+
 #define TAG "main"
  
  
@@ -60,8 +63,9 @@ void app_main(void)
     // extern void adc_init(void);
 
     test_main();
-
-    adc_init();
+    // Butten qqqq;
+    // extern int main_cpp();
+    main_cpp();
 
     while (true)
     {

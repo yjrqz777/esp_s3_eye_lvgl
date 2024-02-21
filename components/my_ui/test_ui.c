@@ -5,6 +5,7 @@
 #include "astro.c"
 // #include "lv_gif.h"
 // #include "lv_img.h"
+#include "songti.c"
 static const char *TAG = "test_ui";
 
 
@@ -33,19 +34,20 @@ void show_button(void)
 }
 void show_text(void)
 {
-    // LV_FONT_DECLARE(alimama30);
+    LV_FONT_DECLARE(songti);
 
-    // static lv_style_t style1;
-    // lv_style_init(&style1);
-    // lv_style_set_text_font(&style1, &alimama30);
-    // lv_style_set_text_color(&style1, lv_palette_main(LV_PALETTE_BLUE_GREY));
-    // lv_obj_t * screen = lv_scr_act();
-    // lv_obj_t* label = lv_label_create(screen);
-    // lv_obj_add_style(label,&style1,0);
-    // lv_obj_set_pos(label,0,10);
-    // lv_label_set_text(label,"我在学习嵌入式");
-    // lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL_CIRCULAR);
-    // lv_obj_set_width(label,230);
+    static lv_style_t style1;
+    lv_style_init(&style1);
+    lv_style_set_text_font(&style1, &songti);
+    lv_style_set_text_color(&style1, lv_palette_main(LV_PALETTE_RED));
+    lv_obj_t * screen = lv_scr_act();
+    lv_obj_t* label = lv_label_create(screen);
+    lv_obj_add_style(label,&style1,0);
+    lv_obj_set_pos(label,0,10);
+    lv_label_set_text(label,"我在自学LVGL，哈哈哈哈!!!.");
+
+    lv_obj_set_width(label,230);    
+    lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL);
 }
 
 

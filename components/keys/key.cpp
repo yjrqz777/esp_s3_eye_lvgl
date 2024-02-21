@@ -2,7 +2,7 @@
  * @Author: YJRQZ777 
  * @Date: 2024-02-20 10:44:43 
  * @Last Modified by: YJRQZ777
- * @Last Modified time: 2024-02-20 12:40:18
+ * @Last Modified time: 2024-02-21 20:23:45
  */
 #include <iostream>
 // #include <string.h>
@@ -15,35 +15,25 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_adc/adc_continuous.h"
+#include "esp_adc/adc_oneshot.h"
 #include "soc/soc_caps.h" 
+
+
+
 
 static const char *TAG = "key";
 
-// typedef struct {
-//     uint32_t pattern_num;                   ///< Number of ADC channels that will be used
-//     adc_digi_pattern_config_t *adc_pattern; ///< List of configs for each ADC channel that will be used
-//     uint32_t sample_freq_hz;                /*!< The expected ADC sampling frequency in Hz. Please refer to `soc/soc_caps.h` to know available sampling frequency range*/
-//     adc_digi_convert_mode_t conv_mode;      ///< ADC DMA conversion mode, see `adc_digi_convert_mode_t`.
-//     adc_digi_output_format_t format;        ///< ADC DMA conversion output format, see `adc_digi_output_format_t`.
-// } adc_continuous_config_t;
+static adc_continuous_handle_t adc_handle_with_continuous = NULL;
 
 
-// typedef struct {
-//     uint8_t atten;      ///< Attenuation of this ADC channel
-//     uint8_t channel;    ///< ADC channel
-//     uint8_t unit;       ///< ADC unit
-//     uint8_t bit_width;  ///< ADC output bit width
-// } adc_digi_pattern_config_t;
-
-
-extern "C" void adc_init(void)
+extern "C" void Button::adc_init_with_continuous(void)
 {   
-    adc_continuous_handle_t adc_handle;
+
     adc_continuous_handle_cfg_t adc_config = {
     .max_store_buf_size = 1024,
     .conv_frame_size = 100,
     };
-    ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &adc_handle));
+    ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &adc_handle_with_continuous));
 
     adc_digi_pattern_config_t adc_num[2] = {};
 
@@ -54,39 +44,30 @@ extern "C" void adc_init(void)
         .format = ADC_DIGI_OUTPUT_FORMAT_TYPE2,
     };
 
-
-
     adc_num[0].atten = ADC_ATTEN_DB_0;
     adc_num[0].channel = ADC_CHANNEL_0;
     adc_num[0].unit = ADC_UNIT_1;
     adc_num[0].bit_width = ADC_BITWIDTH_12;
     adc_con_config.adc_pattern = adc_num;
-    adc_continuous_config(adc_handle, &adc_con_config);
+    adc_continuous_config(adc_handle_with_continuous, &adc_con_config);
     ESP_LOGW(TAG,"  adc_continuous_config success");
-
     // std::cout << "adc init success" << std::endl;
-
     //     adc_continuous_evt_cbs_t cbs = {
     //     .on_conv_done = s_conv_done_cb,
     // };
     // ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(handle, &cbs, NULL));
-    ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
+    ESP_ERROR_CHECK(adc_continuous_start(adc_handle_with_continuous));
     // std::cout << "adc init success" << std::endl;
-    std::cout << "adc init success" << adc_handle << std::endl;
-    xTaskCreate(key_task, "key_task", 2048*10,adc_handle, 1, NULL);
+    std::cout << "adc init success" << adc_handle_with_continuous << std::endl;
+    
 }
 
-// sp_err_t adc_continuous_read(adc_continuous_handle_t handle, uint8_t *buf, uint32_t length_max, uint32_t *out_length, uint32_t timeout_ms)
-// extern "C" 
-void key_task( void *pvParameter)
+void key_task_run_with_continuous( void *pvParameter)
 {   
-
-
-    std::cout << "pvParameter = " << pvParameter << std::endl;
-
-    adc_continuous_handle_t adc_handle;
-    adc_handle = (adc_continuous_handle_t)pvParameter;
-    std::cout << "adc_handle = " << adc_handle << std::endl;
+    // std::cout << "pvParameter = " << pvParameter << std::endl;
+    // adc_continuous_handle_t adc_handle_with_continuous;
+    // adc_handle_with_continuous = (adc_continuous_handle_t)pvParameter;
+    std::cout << "adc_handle_with_continuous = " << adc_handle_with_continuous << std::endl;
     esp_err_t ret;
     uint32_t ret_num = 0;
     uint8_t result[256] = {0};
@@ -94,7 +75,7 @@ void key_task( void *pvParameter)
     while(1)
     {
         vTaskDelay(1);
-            ret = adc_continuous_read(adc_handle, result, 256, &ret_num, 0);
+            ret = adc_continuous_read(adc_handle_with_continuous, result, 256, &ret_num, 0);
 
             if (ret == ESP_OK) {
                 ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32, ret, ret_num);
@@ -120,4 +101,53 @@ void key_task( void *pvParameter)
                 ESP_LOGE("TASK", "ret is %x", ret);
             }
     }
+}
+
+
+
+void Button::run_with_continuous()
+{
+    xTaskCreate(key_task_run_with_continuous, "key_task_run_with_continuous", 2048*10,NULL, 1, NULL);
+}
+
+
+
+adc_oneshot_unit_init_cfg_t init_config__with_oneshot = {
+    .unit_id = ADC_UNIT_1,
+    .ulp_mode = ADC_ULP_MODE_DISABLE,
+};
+
+static adc_oneshot_unit_handle_t adc_handle_with_oneshot = NULL;
+adc_oneshot_chan_cfg_t config__with_oneshot = {
+    .atten = ADC_ATTEN_DB_11,
+    .bitwidth = ADC_BITWIDTH_12,    
+};
+void Button::adc_init_with_oneshot()
+{
+    adc_oneshot_new_unit(&init_config__with_oneshot,&adc_handle_with_oneshot); 
+    adc_oneshot_config_channel(adc_handle_with_oneshot,ADC_CHANNEL_0,&config__with_oneshot);
+    ESP_LOGI(TAG, "adc_init_with_oneshot success\n");
+}
+void key_task_run_with_oneshot(void *pvParameter)
+{   
+    int p = 0;
+    float voltage = 0;
+    ESP_LOGI(TAG, "key_task_run_with_oneshot begin\n");
+    while (true)
+    {
+        ESP_ERROR_CHECK(adc_oneshot_read(adc_handle_with_oneshot,ADC_CHANNEL_0,&p));
+        voltage = p *3.3/4096;
+        std::cout << "adc_oneshot_read = " << voltage << std::endl;
+        // if(*p != 0)
+        // {
+        //     ESP_LOGE(TAG, "adc_oneshot_read=%d\n",*p);
+        // }
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+    
+}
+
+void Button::run_with_oneshot()
+{
+    xTaskCreate(key_task_run_with_oneshot, "key_task_run_with_oneshot", 2048*10,NULL, 1, NULL);
 }
