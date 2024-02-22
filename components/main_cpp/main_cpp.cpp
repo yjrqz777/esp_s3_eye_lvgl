@@ -12,6 +12,6 @@ int main_cpp()
 {
     Button *key = new Button();
     key->adc_init_with_oneshot();
-    key->run_with_oneshot();
+    // key->run_with_oneshot();
     return 0;
 }

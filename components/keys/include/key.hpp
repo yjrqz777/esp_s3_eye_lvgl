@@ -14,7 +14,7 @@
 #define _KEY_HPP
 
 // #include <iostream>
-
+#include "esp_adc/adc_oneshot.h"
 
 // extern "C" void adc_init(void);
 // // extern "C" void adc_init(void);
@@ -32,6 +32,8 @@ extern "C" {
 void key_task_run_with_continuous(void *pvParameter);
 void key_task_run_with_oneshot(void *pvParameter);
 
+// extern unsigned char button_flag;
+extern adc_oneshot_unit_handle_t adc_handle_with_oneshot;
 
 #ifdef __cplusplus
 }

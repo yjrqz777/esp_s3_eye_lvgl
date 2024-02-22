@@ -4,13 +4,15 @@
  */
 
 /*Copy this file as "lv_port_indev.c" and set this value to "1" to enable content*/
-#if 0
+#if 1
 
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_port_indev_template.h"
-#include "../../lvgl.h"
+#include "lv_port_indev.h"
+#include "esp_adc/adc_oneshot.h"
+#include "esp_log.h"
+// #include "../../lvgl.h"
 
 /*********************
  *      DEFINES
@@ -88,31 +90,31 @@ void lv_port_indev_init(void)
      * -----------------*/
 
     /*Initialize your touchpad if you have*/
-    touchpad_init();
+    // touchpad_init();
 
-    /*Register a touchpad input device*/
-    lv_indev_drv_init(&indev_drv);
-    indev_drv.type = LV_INDEV_TYPE_POINTER;
-    indev_drv.read_cb = touchpad_read;
-    indev_touchpad = lv_indev_drv_register(&indev_drv);
+    // /*Register a touchpad input device*/
+    // lv_indev_drv_init(&indev_drv);
+    // indev_drv.type = LV_INDEV_TYPE_POINTER;
+    // indev_drv.read_cb = touchpad_read;
+    // indev_touchpad = lv_indev_drv_register(&indev_drv);
 
     /*------------------
      * Mouse
      * -----------------*/
 
     /*Initialize your mouse if you have*/
-    mouse_init();
+    // mouse_init();
 
-    /*Register a mouse input device*/
-    lv_indev_drv_init(&indev_drv);
-    indev_drv.type = LV_INDEV_TYPE_POINTER;
-    indev_drv.read_cb = mouse_read;
-    indev_mouse = lv_indev_drv_register(&indev_drv);
+    // /*Register a mouse input device*/
+    // lv_indev_drv_init(&indev_drv);
+    // indev_drv.type = LV_INDEV_TYPE_POINTER;
+    // indev_drv.read_cb = mouse_read;
+    // indev_mouse = lv_indev_drv_register(&indev_drv);
 
-    /*Set cursor. For simplicity set a HOME symbol now.*/
-    lv_obj_t * mouse_cursor = lv_img_create(lv_scr_act());
-    lv_img_set_src(mouse_cursor, LV_SYMBOL_HOME);
-    lv_indev_set_cursor(indev_mouse, mouse_cursor);
+    // /*Set cursor. For simplicity set a HOME symbol now.*/
+    // lv_obj_t * mouse_cursor = lv_img_create(lv_scr_act());
+    // lv_img_set_src(mouse_cursor, LV_SYMBOL_HOME);
+    // lv_indev_set_cursor(indev_mouse, mouse_cursor);
 
     /*------------------
      * Keypad
@@ -137,13 +139,13 @@ void lv_port_indev_init(void)
      * -----------------*/
 
     /*Initialize your encoder if you have*/
-    encoder_init();
+    // encoder_init();
 
-    /*Register a encoder input device*/
-    lv_indev_drv_init(&indev_drv);
-    indev_drv.type = LV_INDEV_TYPE_ENCODER;
-    indev_drv.read_cb = encoder_read;
-    indev_encoder = lv_indev_drv_register(&indev_drv);
+    // /*Register a encoder input device*/
+    // lv_indev_drv_init(&indev_drv);
+    // indev_drv.type = LV_INDEV_TYPE_ENCODER;
+    // indev_drv.read_cb = encoder_read;
+    // indev_encoder = lv_indev_drv_register(&indev_drv);
 
     /*Later you should create group(s) with `lv_group_t * group = lv_group_create()`,
      *add objects to the group with `lv_group_add_obj(group, obj)`
@@ -155,20 +157,20 @@ void lv_port_indev_init(void)
      * -----------------*/
 
     /*Initialize your button if you have*/
-    button_init();
+    // button_init();
 
-    /*Register a button input device*/
-    lv_indev_drv_init(&indev_drv);
-    indev_drv.type = LV_INDEV_TYPE_BUTTON;
-    indev_drv.read_cb = button_read;
-    indev_button = lv_indev_drv_register(&indev_drv);
+    // /*Register a button input device*/
+    // lv_indev_drv_init(&indev_drv);
+    // indev_drv.type = LV_INDEV_TYPE_BUTTON;
+    // indev_drv.read_cb = button_read;
+    // indev_button = lv_indev_drv_register(&indev_drv);
 
-    /*Assign buttons to points on the screen*/
-    static const lv_point_t btn_points[2] = {
-        {10, 10},   /*Button 0 -> x:10; y:10*/
-        {40, 100},  /*Button 1 -> x:40; y:100*/
-    };
-    lv_indev_set_button_points(indev_button, btn_points);
+    // /*Assign buttons to points on the screen*/
+    // static const lv_point_t btn_points[2] = {
+    //     {10, 10},   /*Button 0 -> x:10; y:10*/
+    //     {40, 100},  /*Button 1 -> x:40; y:100*/
+    // };
+    // lv_indev_set_button_points(indev_button, btn_points);
 }
 
 /**********************
@@ -316,11 +318,40 @@ static void keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 }
 
 /*Get the currently being pressed key.  0 if no key is pressed*/
+#include "key.hpp"
+
 static uint32_t keypad_get_key(void)
 {
     /*Your code comes here*/
+    unsigned char button_flag = 0;
+    int p=0;
+    ESP_ERROR_CHECK(adc_oneshot_read(adc_handle_with_oneshot,ADC_CHANNEL_0,&p));
+    // ESP_LOGI("keypad_get_key","p = %d\n",p);
+    // voltage = p *3.3/4096;
+    if (p> 300 && p < 500)
+    {
+        button_flag = 1;
+    }
+    else if (p > 850 && p < 1050)
+    {
+        button_flag = 2;
+    }
+    else if (p > 2250 && p < 2450)
+    {
+        button_flag = 3;
+    }
+    else if (p > 2800 && p < 3000)
+    {
+        button_flag = 5;
+    }
+    else
+    {
+        button_flag = 0;
+    }
 
-    return 0;
+    ESP_LOGI("keypad_get_key","p = %d\n",button_flag);
+
+    return button_flag;
 }
 
 /*------------------

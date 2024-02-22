@@ -117,7 +117,7 @@ adc_oneshot_unit_init_cfg_t init_config__with_oneshot = {
     .ulp_mode = ADC_ULP_MODE_DISABLE,
 };
 
-static adc_oneshot_unit_handle_t adc_handle_with_oneshot = NULL;
+adc_oneshot_unit_handle_t adc_handle_with_oneshot = NULL;
 adc_oneshot_chan_cfg_t config__with_oneshot = {
     .atten = ADC_ATTEN_DB_11,
     .bitwidth = ADC_BITWIDTH_12,    
@@ -128,6 +128,8 @@ void Button::adc_init_with_oneshot()
     adc_oneshot_config_channel(adc_handle_with_oneshot,ADC_CHANNEL_0,&config__with_oneshot);
     ESP_LOGI(TAG, "adc_init_with_oneshot success\n");
 }
+
+unsigned char button_flag = 0;
 void key_task_run_with_oneshot(void *pvParameter)
 {   
     int p = 0;
@@ -137,12 +139,35 @@ void key_task_run_with_oneshot(void *pvParameter)
     {
         ESP_ERROR_CHECK(adc_oneshot_read(adc_handle_with_oneshot,ADC_CHANNEL_0,&p));
         voltage = p *3.3/4096;
+    if (p> 300 && p < 500)
+    {
+        button_flag = 1;
+    }
+    else if (p > 850 && p < 1050)
+    {
+        button_flag = 2;
+    }
+    else if (p > 2250 && p < 2450)
+    {
+        button_flag = 3;
+    }
+    else if (p > 2800 && p < 3000)
+    {
+        button_flag = 5;
+    }
+    else
+    {
+        button_flag = 0;
+    }
+
+// {BUTTON_MENU, 2800, 3000}, {BUTTON_PLAY, 2250, 2450}, {BUTTON_UP, 300, 500}, {BUTTON_DOWN, 850, 1050}
+
         std::cout << "adc_oneshot_read = " << voltage << std::endl;
         // if(*p != 0)
         // {
         //     ESP_LOGE(TAG, "adc_oneshot_read=%d\n",*p);
         // }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
     
 }
