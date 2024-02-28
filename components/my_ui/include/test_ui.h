@@ -7,7 +7,7 @@
 
 void test_main(void);
 
-
+void test_picture(void);
 
 
 

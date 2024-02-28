@@ -18,10 +18,11 @@
 #include "key.hpp"
 
 #include "main_cpp.hpp"
-
+#include "driver/gpio.h"
 #define TAG "main"
  
- 
+#include "sd_fat_fs.h"
+
 void lv_tick_task(void *arg)
 {
     lv_tick_inc(1);
@@ -82,12 +83,14 @@ void app_main(void)
     // lv_demo_stress();
     // extern void adc_init(void);
     main_cpp();
-    lv_port_indev_init();    
-    test_main();
+    lv_port_indev_init();  
+
+    
     // Butten qqqq;
     // extern int main_cpp();
-
-
+    fat_fs();
+    
+    test_main();
     // lv_group_t *group = lv_group_create();
 
     // lv_indev_set_group(indev_keypad, group);

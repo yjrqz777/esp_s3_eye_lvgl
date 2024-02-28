@@ -76,7 +76,12 @@
     "thread": "cpp",
     "cinttypes": "cpp",
     "typeinfo": "cpp",
-    "adc_oneshot.h": "c"
+    "adc_oneshot.h": "c",
+    "esp_littlefs.h": "c",
+    "gpio.h": "c",
+    "stat.h": "c",
+    "sdmmc_host.h": "c",
+    "sdmmc_cmd.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
   "fileheader.LastModifiedBy": "YJRQZ777"

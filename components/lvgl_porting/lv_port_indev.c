@@ -349,7 +349,7 @@ static uint32_t keypad_get_key(void)
         button_flag = 0;
     }
 
-    ESP_LOGI("keypad_get_key","p = %d\n",button_flag);
+    // ESP_LOGI("keypad_get_key","p = %d\n",button_flag);
 
     return button_flag;
 }
