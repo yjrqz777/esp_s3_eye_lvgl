@@ -84,7 +84,10 @@
     "sdmmc_cmd.h": "c",
     "events_init.h": "c",
     "gui_guider.h": "c",
-    "lv_examples.h": "c"
+    "lv_examples.h": "c",
+    "esp_spi_flash.h": "c",
+    "esp_system.h": "c",
+    "esp_idf_version.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
   "fileheader.LastModifiedBy": "YJRQZ777"

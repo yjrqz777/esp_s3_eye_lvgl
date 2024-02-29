@@ -22,6 +22,15 @@
 #define TAG "main"
  
 #include "sd_fat_fs.h"
+// #include <cmd_esp32.h>
+
+
+#include "gui_guider.h"
+// #include "guider_lv_conf.h"
+// #include "guider_fonts.h"
+#include "events_init.h"
+
+lv_ui guider_ui;
 
 // #include "gui_guiders_main.h"
 
@@ -32,7 +41,52 @@ void lv_tick_task(void *arg)
     lv_tick_inc(1);
 }
  
+// static int sys_stack_cmd(int argc, char **argv)//获取任务栈
+// {
+//     char *CPU_RunInfo;
 
+//     CPU_RunInfo  = malloc(512);
+//     if( CPU_RunInfo == NULL )
+//     {
+//         ESP_LOGE( "SYS", "内存申请失败" );
+//     }
+//     memset(CPU_RunInfo,0,512);				//信息缓冲区清零
+
+//     cmd_printf("---------------获取系统堆信息----------------\r\n");
+//     cmd_printf("current size of free heap memory: %ld\n", esp_get_free_heap_size());
+//     cmd_printf("min heap size                   : %u\n", heap_caps_get_minimum_free_size(MALLOC_CAP_DEFAULT));
+
+//     vTaskList((char *)CPU_RunInfo);  //获取任务运行时间信息
+//     // cmd_printf("---------------------------------------------\r\n");
+//     // cmd_printf("X:running B:blocked R:ready D:deleted S:suspended\r\n");
+//     cmd_printf("---------------------------------------------\r\n");
+//     cmd_printf("任务名      任务状态 优先级   剩余栈 任务序号\r\n");
+//     cmd_printf("%s", CPU_RunInfo);
+//     cmd_printf("---------------------------------------------\r\n");
+//     free( CPU_RunInfo );
+
+//     return 0;
+// }
+// static int sys_used_cmd(int argc, char **argv)//获取任务使用率
+// {
+//     char *CPU_RunInfo;
+
+//     CPU_RunInfo  = malloc(512);
+//     if( CPU_RunInfo == NULL )
+//     {
+//         ESP_LOGE( "SYS", "内存申请失败" );
+//     }
+//     memset(CPU_RunInfo,0,512);				//信息缓冲区清零
+
+//     vTaskGetRunTimeStats((char *)CPU_RunInfo);
+
+//     cmd_printf("任务名          运行计数      利用率\r\n");
+//     cmd_printf("%s", CPU_RunInfo);
+//     cmd_printf("---------------------------------------------\r\n\n");
+//     free( CPU_RunInfo );
+
+//     return 0;
+// }
 
 // static void event_handler(lv_event_t * e)
 // {
@@ -54,7 +108,7 @@ void app_main(void)
 {
     
     /* Initialize SPI or I2C bus used by the drivers */
-    
+
     lv_init();
     // lvgl_driver_init(); 
     lv_port_disp_init();
@@ -95,6 +149,8 @@ void app_main(void)
 
     // main_gui();
     test_main();
+    // setup_ui(&guider_ui);
+    // events_init(&guider_ui);
     // lv_group_t *group = lv_group_create();
 
     // lv_indev_set_group(indev_keypad, group);
@@ -114,7 +170,9 @@ void app_main(void)
 
 
 
-
+    // cmd_esp32_init();
+    // CONSOLE_REGISTER( "sys_stack","获取各任务的栈使用率" ,NULL, sys_stack_cmd);
+    // CONSOLE_REGISTER( "sys_used" ,"获取各任务的cpu使用率",NULL, sys_used_cmd);
     
 
     while (true)

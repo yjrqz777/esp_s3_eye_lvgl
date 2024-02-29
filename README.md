@@ -13,3 +13,8 @@ Online Image Converter : https://lvgl.io/tools/imageconverter
 
 中文字体转换网站 : https://lvgl.io/tools/fontconverter 注意 字体后缀ttf，必须小写
 
+
+添加freertos—pdf
+
+2024年2月29日21:31:37：测试usb console 但是必须使用串口芯片，usb串口无法接收数据，故失败
+
