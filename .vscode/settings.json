@@ -81,7 +81,10 @@
     "gpio.h": "c",
     "stat.h": "c",
     "sdmmc_host.h": "c",
-    "sdmmc_cmd.h": "c"
+    "sdmmc_cmd.h": "c",
+    "events_init.h": "c",
+    "gui_guider.h": "c",
+    "lv_examples.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
   "fileheader.LastModifiedBy": "YJRQZ777"

@@ -12,7 +12,6 @@
    png
    gif
    freetype
-   tiny_ttf
    qrcode
    rlottie
    ffmpeg

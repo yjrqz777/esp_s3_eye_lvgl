@@ -10,14 +10,12 @@
 extern "C" {
 #endif
 
-
-// #include "lv_conf.h"
 /***************************
  * CURRENT VERSION OF LVGL
  ***************************/
 #define LVGL_VERSION_MAJOR 8
 #define LVGL_VERSION_MINOR 3
-#define LVGL_VERSION_PATCH 11
+#define LVGL_VERSION_PATCH 10
 #define LVGL_VERSION_INFO ""
 
 /*********************
@@ -69,7 +67,7 @@ extern "C" {
  * EXTRAS
  *----------------*/
 #include "src/extra/lv_extra.h"
-// #include "lv_conf.h"
+
 /*********************
  *      DEFINES
  *********************/

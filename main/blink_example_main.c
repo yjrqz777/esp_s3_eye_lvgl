@@ -23,6 +23,10 @@
  
 #include "sd_fat_fs.h"
 
+// #include "gui_guiders_main.h"
+
+
+
 void lv_tick_task(void *arg)
 {
     lv_tick_inc(1);
@@ -57,7 +61,7 @@ void app_main(void)
     // lv_color_t *buf1 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_DMA);
     // assert(buf1 != NULL);
     // static lv_color_t *buf2 = NULL;
- 
+     fat_fs();
     // static lv_disp_draw_buf_t disp_buf;
  
     // uint32_t size_in_px = DISP_BUF_SIZE;
@@ -88,8 +92,8 @@ void app_main(void)
     
     // Butten qqqq;
     // extern int main_cpp();
-    fat_fs();
-    
+
+    // main_gui();
     test_main();
     // lv_group_t *group = lv_group_create();
 

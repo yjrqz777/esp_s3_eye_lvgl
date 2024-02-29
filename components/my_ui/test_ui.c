@@ -112,26 +112,31 @@ void test_btn(void)
 
 }
 
+#include<string.h>
+
 static lv_group_t *g_btn_op_group = NULL;
 static void btn_event_cb(lv_event_t *event)
 {
     lv_obj_t *img = (lv_obj_t *) event->user_data;
-    const char *file_name = lv_list_get_btn_text(lv_obj_get_parent(event->target), event->target);
+
+    const char *file_name = strlwr(lv_list_get_btn_text(lv_obj_get_parent(event->target), event->target));
+
+    // const char *file_name = lv_list_get_btn_text(lv_obj_get_parent(event->target), event->target);
     char *file_name_with_path = (char *) heap_caps_malloc(256, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
 
     if (NULL != file_name_with_path) {
         /* Get full file name with mount point and folder path */
-        strcpy(file_name_with_path, "A:/sdcard/");
+        strcpy(file_name_with_path, "A:sdcard/");
         strcat(file_name_with_path, file_name);
 
         /* Set src of image with file name */
-        lv_img_set_src(img, "/sdcard/emo1.png");
+        lv_img_set_src(img, file_name_with_path);
 
         /* Align object */
         lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
 
         /* Only for debug */
-        ESP_LOGI(TAG, "Display image file : %s", file_name_with_path);
+        ESP_LOGI(TAG, "file_name_with_path : %s,file_name=%s", file_name_with_path,file_name);
 
         /* Don't forget to free allocated memory */
         free(file_name_with_path);
@@ -149,11 +154,15 @@ void test_picture(void)
     }
 
     lv_obj_t *list = lv_list_create(lv_scr_act());
-    lv_obj_set_size(list, 100, 240);
+    lv_obj_set_size(list, 200, 240);
     lv_obj_set_style_border_width(list, 0, LV_STATE_DEFAULT);
     lv_obj_align(list, LV_ALIGN_LEFT_MID, 0, 0);
 
     lv_obj_t *img = lv_img_create(lv_scr_act());
+    // lv_img_set_src(img, "A:sdcard/emo1.png");
+
+    /* Align object */
+    // lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
 
     /* Get file name in storage */
     struct dirent *p_dirent = NULL;
@@ -163,7 +172,8 @@ void test_picture(void)
     while (true) {
         p_dirent = readdir(p_dir_stream);
         if (NULL != p_dirent) {
-            lv_obj_t *btn = lv_list_add_btn(list, LV_SYMBOL_IMAGE, p_dirent->d_name);
+            
+            lv_obj_t *btn = lv_list_add_btn(list, LV_SYMBOL_IMAGE, strlwr(p_dirent->d_name));
             lv_group_add_obj(g_btn_op_group, btn);
             lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_CLICKED, (void *) img);
         } else {
