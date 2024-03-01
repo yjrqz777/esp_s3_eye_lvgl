@@ -32,6 +32,8 @@ extern lv_obj_t *ui_Label3;
 extern lv_obj_t *ui_Button3;
 extern lv_obj_t *ui_Label4;
 extern lv_obj_t *ui_Switch2;
+extern lv_obj_t *ui_TextArea2;
+extern lv_obj_t *ui_Keyboard1;
 extern lv_obj_t *ui____initial_actions0;
 
 LV_IMG_DECLARE( ui_img_333_png);   // assets\333.png

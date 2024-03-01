@@ -29,6 +29,8 @@ lv_obj_t *ui_Label3;
 lv_obj_t *ui_Button3;
 lv_obj_t *ui_Label4;
 lv_obj_t *ui_Switch2;
+lv_obj_t *ui_TextArea2;
+lv_obj_t *ui_Keyboard1;
 lv_obj_t *ui____initial_actions0;
 const lv_img_dsc_t *ui_imgset_[1] = {&ui_img_333_png};
 
@@ -45,18 +47,17 @@ const lv_img_dsc_t *ui_imgset_[1] = {&ui_img_333_png};
 ///////////////////// FUNCTIONS ////////////////////
 void ui_event_Button1( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_KEY &&  lv_event_get_key(e) == LV_KEY_ENTER  ) {
-      _ui_screen_change( &ui_Screen3, LV_SCR_LOAD_ANIM_MOVE_LEFT, 0, 0, &ui_Screen3_screen_init);
-lv_indev_set_group(indev_keypad, group2);
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_screen_change( &ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen3_screen_init);
+      lv_indev_set_group(indev_keypad, group2);
     lv_group_focus_obj(ui_Button2);
-      
 }
 }
 void ui_event_Button2( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_KEY &&  lv_event_get_key(e) == LV_KEY_ENTER  ) {
-      _ui_screen_change( &ui_Screen1, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 0, 0, &ui_Screen1_screen_init);
-lv_indev_set_group(indev_keypad, group1);
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_screen_change( &ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen1_screen_init);
+      lv_indev_set_group(indev_keypad, group1);
     lv_group_focus_obj(ui_Button1);
 }
 }

@@ -161,6 +161,12 @@ void lv_port_indev_init(void)
     // lv_group_add_obj(group1,ui_Label1);
     lv_group_add_obj(group2,ui_Button3);
 
+    lv_group_add_obj(group2,ui_Button3);
+    lv_group_add_obj(group2,ui_Switch2);
+    lv_group_add_obj(group2,ui_TextArea2);
+    lv_group_add_obj(group2,ui_Keyboard1);
+
+
     /*Later you should create group(s) with `lv_group_t * group = lv_group_create()`,
      *add objects to the group with `lv_group_add_obj(group, obj)`
      *and assign this input device to group to navigate in it:
