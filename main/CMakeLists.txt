@@ -6,6 +6,7 @@ idf_component_register(SRCS "blink_example_main.c"
                                  sd_fs 
                                  main_cpp 
                                  generated 
+                                 squareline_ui
                                  # cmd_esp32 
                                  lvgl_esp32_drivers 
                                  lvgl 

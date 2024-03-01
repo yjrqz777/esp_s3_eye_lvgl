@@ -14,6 +14,10 @@
 #include "esp_log.h"
 // #include "../../lvgl.h"
 
+#include "ui.h"
+#include "ui_helpers.h"
+
+
 /*********************
  *      DEFINES
  *********************/
@@ -64,6 +68,8 @@ static lv_indev_state_t encoder_state;
 /**********************
  *      MACROS
  **********************/
+lv_group_t* group1;
+lv_group_t* group2;
 
 /**********************
  *   GLOBAL FUNCTIONS
@@ -128,6 +134,32 @@ void lv_port_indev_init(void)
     indev_drv.type = LV_INDEV_TYPE_KEYPAD;
     indev_drv.read_cb = keypad_read;
     indev_keypad = lv_indev_drv_register(&indev_drv);
+
+
+    group1 = lv_group_create();
+    group2 = lv_group_create();
+	// lv_group_set_default(group);
+    
+    //运行demo
+     ui_init();
+// lv_obj_t *ui_Screen1;
+// lv_obj_t *ui_Image3;
+// void ui_event_Button1( lv_event_t * e);
+// lv_obj_t *ui_Button1;
+// lv_obj_t *ui_Label1;
+// lv_obj_t *ui_Roller1;
+    // lv_group_add_obj(group1,ui_Screen1);
+    lv_group_add_obj(group1,ui_Button1);
+    // lv_group_add_obj(group1,ui_Label1);
+    lv_group_add_obj(group1,ui_Roller1);
+    // lv_group_add_obj(group,ui_Slider1);
+    lv_group_focus_obj(ui_Button1);
+    // lv_group_add_obj(group,ui_Screen2);
+    lv_indev_set_group(indev_keypad, group1);
+
+    lv_group_add_obj(group2,ui_Button2);
+    // lv_group_add_obj(group1,ui_Label1);
+    lv_group_add_obj(group2,ui_Button3);
 
     /*Later you should create group(s) with `lv_group_t * group = lv_group_create()`,
      *add objects to the group with `lv_group_add_obj(group, obj)`
@@ -331,25 +363,29 @@ static uint32_t keypad_get_key(void)
     if (p> 300 && p < 500)
     {
         button_flag = 1;
+        ESP_LOGI("keypad_get_key = LV_KEY_NEXT","p = %d\n",button_flag);
     }
     else if (p > 850 && p < 1050)
     {
-        button_flag = 2;
+        button_flag = 4;
+        ESP_LOGI("keypad_get_key = LV_KEY_RIGHT","p = %d\n",button_flag);
     }
     else if (p > 2250 && p < 2450)
     {
         button_flag = 3;
+        ESP_LOGI("keypad_get_key = LV_KEY_LEFT","p = %d\n",button_flag);
     }
     else if (p > 2800 && p < 3000)
     {
         button_flag = 5;
+        ESP_LOGI("keypad_get_key = LV_KEY_ENTER","p = %d\n",button_flag);
     }
     else
     {
         button_flag = 0;
     }
-
-    // ESP_LOGI("keypad_get_key","p = %d\n",button_flag);
+    // if(button_flag)
+    //     ESP_LOGI("keypad_get_key","p = %d\n",button_flag);
 
     return button_flag;
 }

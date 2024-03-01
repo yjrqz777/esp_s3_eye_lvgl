@@ -25,6 +25,8 @@ extern "C" {
 // lv_indev_t * indev_touchpad;
 // lv_indev_t * indev_mouse;
 extern lv_indev_t * indev_keypad;
+extern lv_group_t* group1;
+extern lv_group_t* group2;
 // lv_indev_t * indev_encoder;
 // lv_indev_t * indev_button;
 /**********************

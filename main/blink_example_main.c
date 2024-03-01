@@ -34,7 +34,8 @@ lv_ui guider_ui;
 
 // #include "gui_guiders_main.h"
 
-
+#include "ui.h"
+#include "ui_helpers.h"
 
 void lv_tick_task(void *arg)
 {
@@ -148,7 +149,11 @@ void app_main(void)
     // extern int main_cpp();
 
     // main_gui();
-    test_main();
+    // test_main();
+
+    // ui_init();
+
+
     // setup_ui(&guider_ui);
     // events_init(&guider_ui);
     // lv_group_t *group = lv_group_create();
