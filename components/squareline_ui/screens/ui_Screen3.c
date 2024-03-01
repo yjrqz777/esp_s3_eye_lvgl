@@ -52,6 +52,12 @@ lv_obj_set_style_text_color(ui_Label4, lv_color_hex(0x000000), LV_PART_MAIN | LV
 lv_obj_set_style_text_opa(ui_Label4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_Label4, &ui_font_Font1, LV_PART_MAIN| LV_STATE_DEFAULT);
 
+ui_Switch2 = lv_switch_create(ui_Panel1);
+lv_obj_set_width( ui_Switch2, 50);
+lv_obj_set_height( ui_Switch2, 25);
+lv_obj_set_align( ui_Switch2, LV_ALIGN_CENTER );
+
+
 lv_obj_add_event_cb(ui_Button2, ui_event_Button2, LV_EVENT_ALL, NULL);
 
 }

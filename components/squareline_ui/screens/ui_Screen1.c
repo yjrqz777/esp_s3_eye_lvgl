@@ -23,7 +23,6 @@ lv_obj_clear_flag( ui_Image3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_Button1 = lv_btn_create(ui_Screen1);
 lv_obj_set_width( ui_Button1, 100);
 lv_obj_set_height( ui_Button1, 50);
-lv_obj_add_state( ui_Button1, LV_STATE_FOCUSED );     /// States
 lv_obj_add_flag( ui_Button1, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_Button1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_Button1, lv_color_hex(0x0EEA1E), LV_PART_MAIN | LV_STATE_DEFAULT );
