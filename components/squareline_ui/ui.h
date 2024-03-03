@@ -29,6 +29,7 @@ extern lv_obj_t *ui_Panel1;
 void ui_event_manbtn( lv_event_t * e);
 extern lv_obj_t *ui_manbtn;
 extern lv_obj_t *ui_Label3;
+void ui_event_scanbtn( lv_event_t * e);
 extern lv_obj_t *ui_scanbtn;
 extern lv_obj_t *ui_Label4;
 extern lv_obj_t *ui_Switch2;

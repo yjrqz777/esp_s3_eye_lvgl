@@ -132,6 +132,7 @@ lv_textarea_set_placeholder_text(ui_TextArea3,"Placeholder...");
 
 
 lv_obj_add_event_cb(ui_manbtn, ui_event_manbtn, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_scanbtn, ui_event_scanbtn, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_testbtn, ui_event_testbtn, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_conbtn, ui_event_conbtn, LV_EVENT_ALL, NULL);
 

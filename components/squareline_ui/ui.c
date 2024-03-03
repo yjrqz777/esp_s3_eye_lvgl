@@ -26,6 +26,7 @@ lv_obj_t *ui_Panel1;
 void ui_event_manbtn( lv_event_t * e);
 lv_obj_t *ui_manbtn;
 lv_obj_t *ui_Label3;
+void ui_event_scanbtn( lv_event_t * e);
 lv_obj_t *ui_scanbtn;
 lv_obj_t *ui_Label4;
 lv_obj_t *ui_Switch2;
@@ -85,7 +86,13 @@ if ( event_code == LV_EVENT_CLICKED) {
 
     lv_indev_set_group(indev_keypad, group1);
     lv_group_focus_obj(ui_wifibtn);
-
+    
+}
+}
+void ui_event_scanbtn( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_CLICKED) {
+      test_wifi_sacn( e );
 }
 }
 void ui_event_testbtn( lv_event_t * e) {
