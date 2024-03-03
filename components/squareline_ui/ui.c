@@ -13,34 +13,40 @@
 void ui_Screen1_screen_init(void);
 lv_obj_t *ui_Screen1;
 lv_obj_t *ui_Image3;
-void ui_event_Button1( lv_event_t * e);
-lv_obj_t *ui_Button1;
+void ui_event_wifibtn( lv_event_t * e);
+lv_obj_t *ui_wifibtn;
 lv_obj_t *ui_Label1;
 lv_obj_t *ui_Roller1;
-
-
-// SCREEN: ui_Screen3
-void ui_Screen3_screen_init(void);
-lv_obj_t *ui_Screen3;
-lv_obj_t *ui_Panel1;
-void ui_event_Button2( lv_event_t * e);
-lv_obj_t *ui_Button2;
-lv_obj_t *ui_Label3;
-lv_obj_t *ui_Button3;
-lv_obj_t *ui_Label4;
-lv_obj_t *ui_Switch2;
-void ui_event_Button6( lv_event_t * e);
-lv_obj_t *ui_Button6;
-lv_obj_t *ui_Label6;
-lv_obj_t *ui_TextArea2;
 
 
 // SCREEN: ui_Screen2
 void ui_Screen2_screen_init(void);
 lv_obj_t *ui_Screen2;
+lv_obj_t *ui_Panel1;
+void ui_event_manbtn( lv_event_t * e);
+lv_obj_t *ui_manbtn;
+lv_obj_t *ui_Label3;
+lv_obj_t *ui_scanbtn;
+lv_obj_t *ui_Label4;
+lv_obj_t *ui_Switch2;
+void ui_event_testbtn( lv_event_t * e);
+lv_obj_t *ui_testbtn;
+lv_obj_t *ui_Label6;
+lv_obj_t *ui_wifiname;
+lv_obj_t *ui_Dropdown1;
+lv_obj_t *ui_TextArea2;
+void ui_event_conbtn( lv_event_t * e);
+lv_obj_t *ui_conbtn;
+lv_obj_t *ui_Label7;
+lv_obj_t *ui_TextArea3;
+
+
+// SCREEN: ui_Screen3
+void ui_Screen3_screen_init(void);
+lv_obj_t *ui_Screen3;
 lv_obj_t *ui_Panel2;
-void ui_event_Button4( lv_event_t * e);
-lv_obj_t *ui_Button4;
+void ui_event_wifibtn32( lv_event_t * e);
+lv_obj_t *ui_wifibtn32;
 lv_obj_t *ui_Label2;
 lv_obj_t *ui_Button5;
 lv_obj_t *ui_Label5;
@@ -61,43 +67,50 @@ const lv_img_dsc_t *ui_imgset_[1] = {&ui_img_333_png};
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_Button1( lv_event_t * e) {
+void ui_event_wifibtn( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
-    _ui_screen_change( &ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen3_screen_init);
-    lv_textarea_set_text(ui_TextArea2,"asdasd\nasddad\nasdad");
+      _ui_screen_change( &ui_Screen2, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen2_screen_init);
+
     lv_indev_set_group(indev_keypad, group2);
-    lv_group_focus_obj(ui_Button6);
+    lv_group_focus_obj(ui_testbtn);
+
 
 }
 }
-void ui_event_Button2( lv_event_t * e) {
+void ui_event_manbtn( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
-    _ui_screen_change( &ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen1_screen_init);
+      _ui_screen_change( &ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen1_screen_init);
 
     lv_indev_set_group(indev_keypad, group1);
-    lv_group_focus_obj(ui_Button1);
+    lv_group_focus_obj(ui_wifibtn);
 
 }
 }
-void ui_event_Button6( lv_event_t * e) {
+void ui_event_testbtn( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
-    _ui_screen_change( &ui_Screen2, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen2_screen_init);
+      _ui_screen_change( &ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen3_screen_init);
 
     lv_indev_set_group(indev_keypad, group3);
-    lv_group_focus_obj(ui_Button4);
+    lv_group_focus_obj(ui_wifibtn32);
 
 }
 }
-void ui_event_Button4( lv_event_t * e) {
+void ui_event_conbtn( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
-    _ui_screen_change( &ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen3_screen_init);
+      test_wifi_connect( e );
+}
+}
+void ui_event_wifibtn32( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_screen_change( &ui_Screen2, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Screen2_screen_init);
 
     lv_indev_set_group(indev_keypad, group2);
-    lv_group_focus_obj(ui_Button2);
+    lv_group_focus_obj(ui_manbtn);
 
 }
 }
@@ -110,8 +123,8 @@ lv_disp_t *dispp = lv_disp_get_default();
 lv_theme_t *theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED), false, LV_FONT_DEFAULT);
 lv_disp_set_theme(dispp, theme);
 ui_Screen1_screen_init();
-ui_Screen3_screen_init();
 ui_Screen2_screen_init();
+ui_Screen3_screen_init();
 ui____initial_actions0 = lv_obj_create(NULL);
 lv_disp_load_scr( ui_Screen1);
 }
