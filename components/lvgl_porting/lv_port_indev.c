@@ -158,6 +158,7 @@ void lv_port_indev_init(void)
     lv_indev_set_group(indev_keypad, group1);
 
     lv_group_add_obj(group2,ui_Button2);
+    
     // lv_group_add_obj(group1,ui_Label1);
     lv_group_add_obj(group2,ui_Button3);
 
