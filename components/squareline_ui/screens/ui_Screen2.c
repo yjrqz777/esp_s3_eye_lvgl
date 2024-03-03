@@ -55,7 +55,7 @@ lv_obj_set_style_text_font(ui_Label4, &ui_font_Font1, LV_PART_MAIN| LV_STATE_DEF
 ui_Switch2 = lv_switch_create(ui_Panel1);
 lv_obj_set_width( ui_Switch2, 50);
 lv_obj_set_height( ui_Switch2, 25);
-lv_obj_set_x( ui_Switch2, 26 );
+lv_obj_set_x( ui_Switch2, 16 );
 lv_obj_set_y( ui_Switch2, 3 );
 lv_obj_set_align( ui_Switch2, LV_ALIGN_CENTER );
 
@@ -76,39 +76,28 @@ lv_label_set_text(ui_Label6,">");
 
 ui_wifiname = lv_roller_create(ui_Screen2);
 lv_roller_set_options( ui_wifiname, "Option 1\nOption 2\nOption 3\nOption 4\nOption 5\nOption 6", LV_ROLLER_MODE_INFINITE );
-lv_obj_set_height( ui_wifiname, 199);
-lv_obj_set_width( ui_wifiname, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_x( ui_wifiname, -74 );
-lv_obj_set_y( ui_wifiname, 16 );
+lv_obj_set_width( ui_wifiname, 234);
+lv_obj_set_height( ui_wifiname, 80);
+lv_obj_set_x( ui_wifiname, -1 );
+lv_obj_set_y( ui_wifiname, -41 );
 lv_obj_set_align( ui_wifiname, LV_ALIGN_CENTER );
 
 ui_Dropdown1 = lv_dropdown_create(ui_Screen2);
 lv_dropdown_set_options( ui_Dropdown1, "12345678\n88888888\n00000000" );
 lv_obj_set_width( ui_Dropdown1, 133);
 lv_obj_set_height( ui_Dropdown1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Dropdown1, 44 );
-lv_obj_set_y( ui_Dropdown1, -15 );
+lv_obj_set_x( ui_Dropdown1, -49 );
+lv_obj_set_y( ui_Dropdown1, 20 );
 lv_obj_set_align( ui_Dropdown1, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_Dropdown1, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
-
-
-
-ui_TextArea2 = lv_textarea_create(ui_Screen2);
-lv_obj_set_width( ui_TextArea2, 141);
-lv_obj_set_height( ui_TextArea2, 39);
-lv_obj_set_x( ui_TextArea2, 46 );
-lv_obj_set_y( ui_TextArea2, -58 );
-lv_obj_set_align( ui_TextArea2, LV_ALIGN_CENTER );
-lv_textarea_set_text(ui_TextArea2,"11111");
-lv_textarea_set_placeholder_text(ui_TextArea2,"Placeholder...");
 
 
 
 ui_conbtn = lv_btn_create(ui_Screen2);
 lv_obj_set_width( ui_conbtn, 40);
 lv_obj_set_height( ui_conbtn, 40);
-lv_obj_set_x( ui_conbtn, 195 );
-lv_obj_set_y( ui_conbtn, 197 );
+lv_obj_set_x( ui_conbtn, 176 );
+lv_obj_set_y( ui_conbtn, 177 );
 lv_obj_add_flag( ui_conbtn, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_conbtn, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
@@ -122,10 +111,10 @@ lv_obj_set_style_text_opa(ui_Label7, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_Label7, &ui_font_Font1, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_TextArea3 = lv_textarea_create(ui_Screen2);
-lv_obj_set_width( ui_TextArea3, 146);
+lv_obj_set_width( ui_TextArea3, 162);
 lv_obj_set_height( ui_TextArea3, 70);
-lv_obj_set_x( ui_TextArea3, 45 );
-lv_obj_set_y( ui_TextArea3, 40 );
+lv_obj_set_x( ui_TextArea3, -34 );
+lv_obj_set_y( ui_TextArea3, 76 );
 lv_obj_set_align( ui_TextArea3, LV_ALIGN_CENTER );
 lv_textarea_set_placeholder_text(ui_TextArea3,"Placeholder...");
 
@@ -133,6 +122,7 @@ lv_textarea_set_placeholder_text(ui_TextArea3,"Placeholder...");
 
 lv_obj_add_event_cb(ui_manbtn, ui_event_manbtn, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_scanbtn, ui_event_scanbtn, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_Switch2, ui_event_Switch2, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_testbtn, ui_event_testbtn, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_conbtn, ui_event_conbtn, LV_EVENT_ALL, NULL);
 
