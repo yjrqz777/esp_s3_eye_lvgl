@@ -16,3 +16,8 @@ void test_wifi_sacn(lv_event_t * e)
 	my_wifi_init();
 	// Your code here
 }
+
+void wifi_switch(lv_event_t * e)
+{
+	// Your code here
+}

@@ -52,12 +52,12 @@ lv_obj_set_style_text_color(ui_Label4, lv_color_hex(0x000000), LV_PART_MAIN | LV
 lv_obj_set_style_text_opa(ui_Label4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_Label4, &ui_font_Font1, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_Switch2 = lv_switch_create(ui_Panel1);
-lv_obj_set_width( ui_Switch2, 50);
-lv_obj_set_height( ui_Switch2, 25);
-lv_obj_set_x( ui_Switch2, 16 );
-lv_obj_set_y( ui_Switch2, 3 );
-lv_obj_set_align( ui_Switch2, LV_ALIGN_CENTER );
+ui_wifiswitch = lv_switch_create(ui_Panel1);
+lv_obj_set_width( ui_wifiswitch, 50);
+lv_obj_set_height( ui_wifiswitch, 25);
+lv_obj_set_x( ui_wifiswitch, 16 );
+lv_obj_set_y( ui_wifiswitch, 3 );
+lv_obj_set_align( ui_wifiswitch, LV_ALIGN_CENTER );
 
 
 ui_testbtn = lv_btn_create(ui_Panel1);
@@ -122,7 +122,7 @@ lv_textarea_set_placeholder_text(ui_TextArea3,"Placeholder...");
 
 lv_obj_add_event_cb(ui_manbtn, ui_event_manbtn, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_scanbtn, ui_event_scanbtn, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_Switch2, ui_event_Switch2, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_wifiswitch, ui_event_wifiswitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_testbtn, ui_event_testbtn, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_conbtn, ui_event_conbtn, LV_EVENT_ALL, NULL);
 

@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 void test_wifi_sacn(lv_event_t * e);
+void wifi_switch(lv_event_t * e);
 void test_wifi_connect(lv_event_t * e);
 
 #ifdef __cplusplus

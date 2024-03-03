@@ -29,8 +29,8 @@ lv_obj_t *ui_Label3;
 void ui_event_scanbtn( lv_event_t * e);
 lv_obj_t *ui_scanbtn;
 lv_obj_t *ui_Label4;
-void ui_event_Switch2( lv_event_t * e);
-lv_obj_t *ui_Switch2;
+void ui_event_wifiswitch( lv_event_t * e);
+lv_obj_t *ui_wifiswitch;
 void ui_event_testbtn( lv_event_t * e);
 lv_obj_t *ui_testbtn;
 lv_obj_t *ui_Label6;
@@ -95,10 +95,10 @@ if ( event_code == LV_EVENT_CLICKED) {
       test_wifi_sacn( e );
 }
 }
-void ui_event_Switch2( lv_event_t * e) {
+void ui_event_wifiswitch( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_PRESS_LOST) {
-      _ui_checked_set_text_value( ui_Label4, target, "1", "%");
+if ( event_code == LV_EVENT_CLICKED) {
+      wifi_switch( e );
 }
 }
 void ui_event_testbtn( lv_event_t * e) {

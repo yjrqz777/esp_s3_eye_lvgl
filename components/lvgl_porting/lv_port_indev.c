@@ -174,7 +174,7 @@ void lv_port_indev_init(void)
 
     lv_group_add_obj(group2,ui_manbtn);
     lv_group_add_obj(group2,ui_testbtn);
-    lv_group_add_obj(group2,ui_Switch2);
+    lv_group_add_obj(group2,ui_wifiswitch);
 
     lv_group_add_obj(group2,ui_scanbtn);
     lv_group_add_obj(group2,ui_wifiname);
