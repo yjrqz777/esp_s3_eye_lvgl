@@ -73,6 +73,7 @@ void show_scan()
     {
         //printf("%30s  %3d  %3d  %02X-%02X-%02X-%02X-%02X-%02X\n", ap_info[i].ssid, ap_info[i].primary, ap_info[i].rssi, ap_info[i].bssid[0], ap_info[i].bssid[1], ap_info[i].bssid[2], ap_info[i].bssid[3], ap_info[i].bssid[4], ap_info[i].bssid[5]);
         strcat(wifi_ssid, (const char *)ap_info[i].ssid);  
+        if(i<ap_num-1)
         strcat(wifi_ssid, "\n");  
         
     }
