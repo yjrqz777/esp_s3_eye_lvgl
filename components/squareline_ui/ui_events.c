@@ -4,13 +4,15 @@
 // Project name: SquareLine_Project
 
 #include "ui.h"
-
+#include "my_wifi.h"
 void test_wifi_connect(lv_event_t * e)
 {
+
 	// Your code here
 }
 
 void test_wifi_sacn(lv_event_t * e)
 {
+	my_wifi_init();
 	// Your code here
 }

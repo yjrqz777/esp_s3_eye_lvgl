@@ -89,7 +89,8 @@
     "esp_system.h": "c",
     "esp_idf_version.h": "c",
     "ui.h": "c",
-    "ui_helpers.h": "c"
+    "ui_helpers.h": "c",
+    "my_wifi.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
   "fileheader.LastModifiedBy": "YJRQZ777"
