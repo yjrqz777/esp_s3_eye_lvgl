@@ -32,8 +32,22 @@ extern lv_obj_t *ui_Label3;
 extern lv_obj_t *ui_Button3;
 extern lv_obj_t *ui_Label4;
 extern lv_obj_t *ui_Switch2;
+void ui_event_Button6( lv_event_t * e);
+extern lv_obj_t *ui_Button6;
+extern lv_obj_t *ui_Label6;
 extern lv_obj_t *ui_TextArea2;
-extern lv_obj_t *ui_Keyboard1;
+// SCREEN: ui_Screen2
+void ui_Screen2_screen_init(void);
+extern lv_obj_t *ui_Screen2;
+extern lv_obj_t *ui_Panel2;
+void ui_event_Button4( lv_event_t * e);
+extern lv_obj_t *ui_Button4;
+extern lv_obj_t *ui_Label2;
+extern lv_obj_t *ui_Button5;
+extern lv_obj_t *ui_Label5;
+extern lv_obj_t *ui_Switch1;
+extern lv_obj_t *ui_TextArea1;
+extern lv_obj_t *ui_Keyboard2;
 extern lv_obj_t *ui____initial_actions0;
 
 LV_IMG_DECLARE( ui_img_333_png);   // assets\333.png

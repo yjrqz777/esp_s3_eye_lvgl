@@ -70,7 +70,7 @@ static lv_indev_state_t encoder_state;
  **********************/
 lv_group_t* group1;
 lv_group_t* group2;
-
+lv_group_t* group3;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
@@ -138,34 +138,33 @@ void lv_port_indev_init(void)
 
     group1 = lv_group_create();
     group2 = lv_group_create();
+    group3 = lv_group_create();
 	// lv_group_set_default(group);
     
     //运行demo
-     ui_init();
-// lv_obj_t *ui_Screen1;
-// lv_obj_t *ui_Image3;
-// void ui_event_Button1( lv_event_t * e);
-// lv_obj_t *ui_Button1;
-// lv_obj_t *ui_Label1;
-// lv_obj_t *ui_Roller1;
-    // lv_group_add_obj(group1,ui_Screen1);
+    ui_init();
+
     lv_group_add_obj(group1,ui_Button1);
-    // lv_group_add_obj(group1,ui_Label1);
     lv_group_add_obj(group1,ui_Roller1);
-    // lv_group_add_obj(group,ui_Slider1);
     lv_group_focus_obj(ui_Button1);
-    // lv_group_add_obj(group,ui_Screen2);
     lv_indev_set_group(indev_keypad, group1);
 
-    lv_group_add_obj(group2,ui_Button2);
-    
-    // lv_group_add_obj(group1,ui_Label1);
-    lv_group_add_obj(group2,ui_Button3);
 
+
+    lv_group_add_obj(group2,ui_Button2);
+    lv_group_add_obj(group2,ui_Button6);
     lv_group_add_obj(group2,ui_Button3);
     lv_group_add_obj(group2,ui_Switch2);
     lv_group_add_obj(group2,ui_TextArea2);
-    lv_group_add_obj(group2,ui_Keyboard1);
+
+    lv_group_add_obj(group3,ui_Button4);
+    lv_group_add_obj(group3,ui_Keyboard2);
+    lv_group_add_obj(group3,ui_Button5);
+    lv_group_add_obj(group3,ui_Switch1);
+    lv_group_add_obj(group3,ui_TextArea1);
+
+
+    // lv_group_add_obj(group2,ui_Keyboard1);
 
 
     /*Later you should create group(s) with `lv_group_t * group = lv_group_create()`,
