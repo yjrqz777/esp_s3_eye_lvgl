@@ -23,14 +23,14 @@
  
 #include "sd_fat_fs.h"
 // #include <cmd_esp32.h>
+#include "qma7981.h"
 
-
-#include "gui_guider.h"
+// #include "gui_guider.h"
 // #include "guider_lv_conf.h"
 // #include "guider_fonts.h"
-#include "events_init.h"
+// #include "events_init.h"
 
-lv_ui guider_ui;
+// lv_ui guider_ui;
 
 // #include "gui_guiders_main.h"
 
@@ -116,7 +116,7 @@ void app_main(void)
     // lv_color_t *buf1 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_DMA);
     // assert(buf1 != NULL);
     // static lv_color_t *buf2 = NULL;
-     fat_fs();
+    fat_fs();
     // static lv_disp_draw_buf_t disp_buf;
  
     // uint32_t size_in_px = DISP_BUF_SIZE;
@@ -144,6 +144,7 @@ void app_main(void)
     main_cpp();
     lv_port_indev_init();  
 
+    xTaskCreate(qma7981_main, "qma7981_main", 4096, NULL, 2, NULL);
     
     // Butten qqqq;
     // extern int main_cpp();

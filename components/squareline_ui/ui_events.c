@@ -5,10 +5,16 @@
 
 #include "ui.h"
 #include "my_wifi.h"
+#include "esp_log.h"
 void test_wifi_connect(lv_event_t * e)
 {
 
 	// Your code here
+
+
+        char buf[32];
+        lv_roller_get_selected_str(ui_wifiname, buf, sizeof(buf));
+        ESP_LOGW("rrrr","Selected month: ID:%d Text:%s\n", lv_roller_get_selected(ui_wifiname), buf);
 }
 
 void test_wifi_sacn(lv_event_t * e)

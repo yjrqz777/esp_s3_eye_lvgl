@@ -35,10 +35,10 @@ void start_scan()
      .scan_type=WIFI_SCAN_TYPE_ACTIVE,  /**< scan type, active or passive */
      .scan_time={
         .active = {
-                .min=120,
-                .max=150,
+                .min=0,
+                .max=50,
         },
-            .passive=1200,
+            .passive=500,
         },  /**< scan time per channel */
     };
     esp_wifi_scan_start(&scan_config,false);
@@ -60,13 +60,15 @@ void start_show_pid()
 
 void show_scan()
 {
-    char wifi_ssid[500] = "";
+    char wifi_ssid[1000] = "";
     uint16_t ap_num =  0;
     esp_wifi_scan_get_ap_num(&ap_num);
     ESP_LOGI("wifi","%d",ap_num);
     wifi_ap_record_t ap_info[20];
     memset(ap_info,0,sizeof(ap_info));
     esp_wifi_scan_get_ap_records(&ap_num,&ap_info);
+    if(ap_num>20)
+        ap_num = 10;
     ESP_LOGI("wifi","%d",ap_num);
     // printf("%30s %s %s %s\n", "SSID", "频道", "强度", "MAC地址");
     for (int i = 0; i < ap_num; i++)
@@ -158,6 +160,81 @@ void task_list(void)
     }
 }
 
+void wifi_connect( uint8_t ssid[32], uint8_t password[64])
+{
+    // wifi_config_t *configs = {
+    //     *&configs.sta = {
+    //         // .ssid = ssid,
+    //         // .password = password,
+    //         .bssid_set = 0,
+    //         .channel = 0,
+    //         .listen_interval = 0,
+    //         .sort_method = WIFI_CONNECT_AP_BY_SIGNAL,
+    //         .threshold.rssi = -127,
+    //         .threshold.authmode = WIFI_AUTH_OPEN,
+    //     },            
+    // };
+    wifi_config_t *configs = malloc(sizeof(wifi_config_t));
+    configs->sta.bssid_set = 0;
+    configs->sta.channel = 0;
+    configs->sta.listen_interval = 0;
+    configs->sta.sort_method = WIFI_CONNECT_AP_BY_SIGNAL;
+    configs->sta.threshold.rssi = -127;
+    configs->sta.threshold.authmode = WIFI_AUTH_OPEN;
+    // configs->sta.ssid = &ssid;
+    // configs->sta.password = &password;
+
+    // configs.sta.ssid = "ssid[32]";
+    // configs.sta.password = "password[64]";
+    esp_wifi_set_config(ESP_IF_WIFI_STA,&configs);
+    esp_wifi_connect();
+}
+
+
+
+
+
+
+
+
+
+
+// typedef struct {
+//     uint8_t ssid[32];      /**< SSID of target AP. */
+//     uint8_t password[64];  /**< Password of target AP. */
+// } wifi_sta_config_t;
+
+// typedef union {
+//     wifi_sta_config_t sta; /**< configuration of STA */
+// } wifi_config_t;
+
+// void wifi_connect( uint8_t ssid[32], uint8_t password[64])
+// {
+//     wifi_config_t configs = {
+//         .sta = {
+//             // .ssid = ,
+//             // .password = ,
+//             .bssid_set = 0,
+//             .channel = 0,
+//             .listen_interval = 0,
+//             .sort_method = WIFI_CONNECT_AP_BY_SIGNAL,
+//             .threshold.rssi = -127,
+//             .threshold.authmode = WIFI_AUTH_OPEN,
+//         },            
+//     };
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 void my_wifi_init(void)
 {
@@ -174,20 +251,7 @@ void my_wifi_init(void)
     xTaskCreate(task_list, "task_list", 10240, NULL, 1, NULL);
 
     esp_wifi_set_mode(WIFI_MODE_STA);
-    wifi_config_t configs = {
-        .sta = {
-            .ssid = "duan",
-            .password = "13417319586",
-            .bssid_set = 0,
-            .channel = 0,
-            .listen_interval = 0,
-            .sort_method = WIFI_CONNECT_AP_BY_SIGNAL,
-            .threshold.rssi = -127,
-            .threshold.authmode = WIFI_AUTH_OPEN,
-        },            
-    };
 
-    esp_wifi_set_config(ESP_IF_WIFI_STA,&configs);
     esp_wifi_start();
     ESP_LOGI(TAG,"wifi init");
     init_flag = true;
