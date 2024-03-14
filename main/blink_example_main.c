@@ -24,6 +24,10 @@
 #include "sd_fat_fs.h"
 // #include <cmd_esp32.h>
 #include "qma7981.h"
+#include "nvs_flash.h"
+#include "esp_netif.h"
+#include "esp_event.h"
+#include "esp_wifi.h"
 
 // #include "gui_guider.h"
 // #include "guider_lv_conf.h"

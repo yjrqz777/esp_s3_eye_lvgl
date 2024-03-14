@@ -6,6 +6,8 @@
 #include "ui.h"
 #include "my_wifi.h"
 #include "esp_log.h"
+
+uint8_t state = 0;
 void test_wifi_connect(lv_event_t * e)
 {
 
@@ -14,16 +16,29 @@ void test_wifi_connect(lv_event_t * e)
 
         char buf[32];
         lv_roller_get_selected_str(ui_wifiname, buf, sizeof(buf));
+        char buf2[64];
+        // lv_roller_get_selected_str(ui_Dropdown1, buf2, sizeof(buf2));
+		lv_dropdown_get_selected_str(ui_Dropdown1, buf2, sizeof(buf2));
+		wifi_connect( buf, buf2);
+
         ESP_LOGW("rrrr","Selected month: ID:%d Text:%s\n", lv_roller_get_selected(ui_wifiname), buf);
+		ESP_LOGW("rrrr","Selected month: ID:%d Text:%s\n", lv_dropdown_get_selected(ui_Dropdown1), buf2);
 }
 
 void test_wifi_sacn(lv_event_t * e)
 {
-	my_wifi_init();
+	my_wifi_scan();
 	// Your code here
 }
 
 void wifi_switch(lv_event_t * e)
 {
 	// Your code here
+
+	state = lv_obj_has_state(ui_wifiswitch, LV_STATE_CHECKED);   // 返回 bool 类型， 开-1 ； 关-2
+	if(state ==1)
+	my_wifi_init();
+	if(state ==0)
+	kill_wifi();
+	ESP_LOGW("ui_wifiswitch","%d\n",state);
 }

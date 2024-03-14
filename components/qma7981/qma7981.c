@@ -130,7 +130,7 @@ void qma7981_main(void)
         X_AXIS_A=bias_Kalman.out;
 
 
-        printf("%.3f,%.3f,%.3f\n", X_AXIS_A, Y_AXIS_A, Z_AXIS_A);
+        // printf("%.3f,%.3f,%.3f\n", X_AXIS_A, Y_AXIS_A, Z_AXIS_A);
         // vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }

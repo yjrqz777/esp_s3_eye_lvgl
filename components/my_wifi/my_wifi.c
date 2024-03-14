@@ -90,20 +90,14 @@ void show_scan()
     vTaskDelete(NULL);
 }
 
-void kill_wifi()
-{
-    esp_wifi_disconnect();
-    esp_wifi_stop();
-    esp_wifi_deinit();
-    vTaskDelete(NULL);
-}
+
 // s8.1：调用函数 esp_wifi_disconnect() 断开 Wi-Fi 连接。
 
 // s8.2：调用函数 esp_wifi_stop() 终止 Wi-Fi 驱动程序。
 
 // s8.3：调用函数 esp_wifi_deinit() 清理 Wi-Fi 驱动程序。
 
-
+static void http_test_task(void *pvParameters);
 void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data)
 {
   ESP_LOGI("EVENT_HANDLE", "BASE:%s, ID:%ld", base, id);
@@ -135,7 +129,7 @@ void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *ev
                 ESP_LOGE("EVENT_HANDLE", "IP_EVENT_STA_GOT_IP");
                 vTaskDelay(2000/portTICK_PERIOD_MS);
                 // xTaskCreate(kill_wifi, "kill_wifi", 1024, NULL, 2, NULL);
-                // xTaskCreate(&http_test_task, "http_test_task", 8192, NULL, 5, NULL);
+                xTaskCreate(http_test_task, "http_test_task", 8192, NULL, 5, NULL);
                 break;
             case IP_EVENT_STA_LOST_IP:
                 ESP_LOGE("EVENT_HANDLE", "IP_EVENT_STA_LOST_IP");
@@ -160,20 +154,8 @@ void task_list(void)
     }
 }
 
-void wifi_connect( uint8_t ssid[32], uint8_t password[64])
+void wifi_connect( char *ssid, char * password)
 {
-    // wifi_config_t *configs = {
-    //     *&configs.sta = {
-    //         // .ssid = ssid,
-    //         // .password = password,
-    //         .bssid_set = 0,
-    //         .channel = 0,
-    //         .listen_interval = 0,
-    //         .sort_method = WIFI_CONNECT_AP_BY_SIGNAL,
-    //         .threshold.rssi = -127,
-    //         .threshold.authmode = WIFI_AUTH_OPEN,
-    //     },            
-    // };
     wifi_config_t *configs = malloc(sizeof(wifi_config_t));
     configs->sta.bssid_set = 0;
     configs->sta.channel = 0;
@@ -181,12 +163,11 @@ void wifi_connect( uint8_t ssid[32], uint8_t password[64])
     configs->sta.sort_method = WIFI_CONNECT_AP_BY_SIGNAL;
     configs->sta.threshold.rssi = -127;
     configs->sta.threshold.authmode = WIFI_AUTH_OPEN;
-    // configs->sta.ssid = &ssid;
-    // configs->sta.password = &password;
-
+    memcpy(configs->sta.ssid, ssid, 32);
+    memcpy(configs->sta.password, password, 64);
     // configs.sta.ssid = "ssid[32]";
     // configs.sta.password = "password[64]";
-    esp_wifi_set_config(ESP_IF_WIFI_STA,&configs);
+    esp_wifi_set_config(ESP_IF_WIFI_STA,configs);
     esp_wifi_connect();
 }
 
@@ -197,54 +178,32 @@ void wifi_connect( uint8_t ssid[32], uint8_t password[64])
 
 
 
+// esp_netif_t * my_ap=NULL;
 
 
-// typedef struct {
-//     uint8_t ssid[32];      /**< SSID of target AP. */
-//     uint8_t password[64];  /**< Password of target AP. */
-// } wifi_sta_config_t;
-
-// typedef union {
-//     wifi_sta_config_t sta; /**< configuration of STA */
-// } wifi_config_t;
-
-// void wifi_connect( uint8_t ssid[32], uint8_t password[64])
-// {
-//     wifi_config_t configs = {
-//         .sta = {
-//             // .ssid = ,
-//             // .password = ,
-//             .bssid_set = 0,
-//             .channel = 0,
-//             .listen_interval = 0,
-//             .sort_method = WIFI_CONNECT_AP_BY_SIGNAL,
-//             .threshold.rssi = -127,
-//             .threshold.authmode = WIFI_AUTH_OPEN,
-//         },            
-//     };
-// }
-
-
-
-
-
-
-
-
-
+void kill_wifi()
+{
+    esp_wifi_disconnect();
+    esp_wifi_stop();
+    esp_wifi_deinit();
+    // esp_netif_destroy(my_ap);
+    // vTaskDelete(NULL);
+}
 
 
 
 
 void my_wifi_init(void)
 {
-    static bool init_flag = false;
-    if (init_flag == false)
+    static uint8_t wifi_init_flag = 1;
+    if(wifi_init_flag)
     {
     nvs_flash_init();
     esp_netif_init();
     esp_event_loop_create_default();
     esp_netif_create_default_wifi_sta();
+    wifi_init_flag =0;
+    }
     wifi_init_config_t wifi_init = WIFI_INIT_CONFIG_DEFAULT();
     esp_wifi_init(&wifi_init);
 
@@ -253,15 +212,102 @@ void my_wifi_init(void)
     esp_wifi_set_mode(WIFI_MODE_STA);
 
     esp_wifi_start();
-    ESP_LOGI(TAG,"wifi init");
-    init_flag = true;
-    }
-    else
-    {   
-        ESP_LOGI(TAG,"wifi start_scan");
-        xTaskCreate(start_scan, "start_scan", 1024, NULL, 2, NULL);
-    }
+    ESP_LOGW(TAG,"wifi init");
+
 
 }
+
+void my_wifi_scan()
+{
+        ESP_LOGI(TAG,"wifi start_scan");
+        xTaskCreate(start_scan, "start_scan", 1024, NULL, 2, NULL);
+}
+
+
+#define MAX_HTTP_OUTPUT_BUFFER 2048
+
+
+void http_test_task(void *pvParameters)
+{
+
+//02-1 定义需要的变量
+      char output_buffer[MAX_HTTP_OUTPUT_BUFFER] = {0};   //用于接收通过http协议返回的数据
+    int content_length = 0;  //http协议头的长度
+    
+
+    //02-2 配置http结构体
+   
+   //定义http配置结构体，并且进行清零
+    esp_http_client_config_t config ;
+    memset(&config,0,sizeof(config));
+
+    //向配置结构体内部写入url
+    static const char *URL = "http://quan.suning.com/getSysTime.do";
+    config.url = URL;
+    //初始化结构体
+    esp_http_client_handle_t client = esp_http_client_init(&config);	//初始化http连接
+    //设置发送请求 
+    esp_http_client_set_method(client, HTTP_METHOD_GET);
+    //02-3 循环通讯
+    while(1)
+    {
+    // 与目标主机创建连接，并且声明写入内容长度为0
+    esp_err_t err = esp_http_client_open(client, 0);
+
+    //如果连接失败
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to open HTTP connection: %s", esp_err_to_name(err));
+    } 
+    //如果连接成功
+    else {
+
+        //读取目标主机的返回内容的协议头
+        content_length = esp_http_client_fetch_headers(client);
+
+        //如果协议头长度小于0，说明没有成功读取到
+        if (content_length < 0) {
+            ESP_LOGE(TAG, "HTTP client fetch headers failed");
+        } 
+
+        //如果成功读取到了协议头
+        else {
+
+            //读取目标主机通过http的响应内容
+            int data_read = esp_http_client_read_response(client, output_buffer, MAX_HTTP_OUTPUT_BUFFER);
+            if (data_read >= 0) {
+
+                //打印响应内容，包括响应状态，响应体长度及其内容
+                ESP_LOGI(TAG, "HTTP GET Status = %d, content_length = %lld",
+                esp_http_client_get_status_code(client),				//获取响应状态信息
+                esp_http_client_get_content_length(client));			//获取响应信息长度
+                printf("data:%s\n", output_buffer);
+				//对接收到的数据作相应的处理
+                cJSON* root = NULL;
+                root = cJSON_Parse(output_buffer);
+                cJSON* time =cJSON_GetObjectItem(root,"sysTime2");
+                printf("%s\n",time->valuestring);
+
+                // LCD_ShowString(0,0,(u8 *)time->valuestring,RED,WHITE,12,0);
+            } 
+            //如果不成功
+            else {
+                ESP_LOGE(TAG, "Failed to read response");
+            }
+        }
+    }
+
+    //关闭连接
+    esp_http_client_close(client);
+
+    //延时
+    vTaskDelay(3000/portTICK_PERIOD_MS);
+    vTaskDelete(NULL);
+    }
+}
+
+
+
+
+
 
 
