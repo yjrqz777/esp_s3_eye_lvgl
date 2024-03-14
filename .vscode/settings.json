@@ -90,8 +90,27 @@
     "esp_idf_version.h": "c",
     "ui.h": "c",
     "ui_helpers.h": "c",
-    "my_wifi.h": "c"
+    "my_wifi.h": "c",
+    "disp_spi.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
-  "fileheader.LastModifiedBy": "YJRQZ777"
+  "fileheader.LastModifiedBy": "YJRQZ777",
+  "MicroPython.executeButton": [
+    {
+      "text": "▶",
+      "tooltip": "运行",
+      "alignment": "left",
+      "command": "extension.executeFile",
+      "priority": 3.5
+    }
+  ],
+  "MicroPython.syncButton": [
+    {
+      "text": "$(sync)",
+      "tooltip": "同步",
+      "alignment": "left",
+      "command": "extension.execute",
+      "priority": 4
+    }
+  ]
 }
