@@ -17,6 +17,8 @@ void ui_event_wifibtn( lv_event_t * e);
 lv_obj_t *ui_wifibtn;
 lv_obj_t *ui_Label1;
 lv_obj_t *ui_Roller1;
+lv_obj_t *ui_Label8;
+lv_obj_t *ui_Label9;
 
 
 // SCREEN: ui_Screen2
