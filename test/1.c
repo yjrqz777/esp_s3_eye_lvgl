@@ -2,25 +2,19 @@
 #include <stdio.h>  
 #include <string.h>  
 #include <stdlib.h> // 为了使用 malloc 和 free  
+
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
 int main() {  
-    char result[100]; // 创建一个足够大的字符数组来存储最终的字符串  
-    char* elements[] = {"620", "zzuli-student", "zzuli-inside", "zzuli-student"}; // 你的字符串数组  
-    int numElements = sizeof(elements) / sizeof(elements[0]); // 计算数组中的元素数量  
-  
-    // 初始化结果字符串为空  
-    result[0] = '\0';  
-  
-    // 使用循环将每个元素添加到结果字符串中，并在每个元素后面添加一个换行符  
-    for (int i = 0; i < numElements; i++) {  
-        strcat(result, elements[i]);  
-        strcat(result, "\n");  
-    }  
-  
-    // 打印结果字符串  
-    printf("%s\n", result);  
-    // size_t len = strlen(result); // 获取字符串长度  
-    // printf("%.*s", (int)len, result); // 输出整个字符串，包括其中的 \n  
-    return 0;  
+    long long datetime = 20240315140346; 
+    printf("%lld\n",datetime);
+    uint16_t year = datetime / 10000000000;  
+    uint8_t month = (datetime % 1000000000) / 100000000;  
+    uint8_t day = (datetime % 100000000) / 1000000;  
+    uint8_t hour = (datetime % 1000000) / 10000;  
+    uint8_t minute = (datetime % 10000) / 100;  
+    uint8_t second = datetime % 100;  
+    printf("%d-%d-%d %d:%d:%d\n",year,month,day,hour,minute,second);
 }
 
   

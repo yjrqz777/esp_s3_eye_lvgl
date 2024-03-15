@@ -1,5 +1,9 @@
-
-
+/*
+ * @Author: YJRQZ777 
+ * @Date: 2024-03-15 13:22:58 
+ * @Last Modified by: YJRQZ777
+ * @Last Modified time: 2024-03-15 13:24:40
+ */
 #include "my_wifi.h"
 #include "esp_spi_flash.h"
 #include "nvs_flash.h"
@@ -9,12 +13,8 @@
 #include "esp_log.h"
 // F:\Espressif\frameworks\esp-idf-v5.0.2\components\esp_http_client\include\esp_http_client.h
 
-
-#include "esp_http_client.h"
-#include "cJSON.h"
-
 #include "ui.h"
-
+#include "to_time.h"
 
 const char *TAG = "wifi";
 
@@ -112,7 +112,6 @@ void show_scan()
 
 // s8.3：调用函数 esp_wifi_deinit() 清理 Wi-Fi 驱动程序。
 
-static void http_test_task(void *pvParameters);
 void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data)
 {
   ESP_LOGI("EVENT_HANDLE", "BASE:%s, ID:%ld", base, id);
@@ -221,15 +220,12 @@ void kill_wifi()
 
 void my_wifi_init(void)
 {
-    static uint8_t wifi_init_flag = 1;
-    if(wifi_init_flag)
-    {
-    nvs_flash_init();
-    esp_netif_init();
-    esp_event_loop_create_default();
-    esp_netif_create_default_wifi_sta();
-    wifi_init_flag =0;
-    }
+    // static uint8_t wifi_init_flag = 1;
+    // if(wifi_init_flag)
+    // {
+
+    // wifi_init_flag =0;
+    // }
     wifi_init_config_t wifi_init = WIFI_INIT_CONFIG_DEFAULT();
     esp_wifi_init(&wifi_init);
 
@@ -250,86 +246,7 @@ void my_wifi_scan()
 }
 
 
-#define MAX_HTTP_OUTPUT_BUFFER 2048
 
-
-void http_test_task(void *pvParameters)
-{
-
-//02-1 定义需要的变量
-      char output_buffer[MAX_HTTP_OUTPUT_BUFFER] = {0};   //用于接收通过http协议返回的数据
-    int content_length = 0;  //http协议头的长度
-    
-
-    //02-2 配置http结构体
-   
-   //定义http配置结构体，并且进行清零
-    esp_http_client_config_t config ;
-    memset(&config,0,sizeof(config));
-
-    //向配置结构体内部写入url
-    static const char *URL = "http://quan.suning.com/getSysTime.do";
-    config.url = URL;
-    //初始化结构体
-    esp_http_client_handle_t client = esp_http_client_init(&config);	//初始化http连接
-    //设置发送请求 
-    esp_http_client_set_method(client, HTTP_METHOD_GET);
-    //02-3 循环通讯
-    while(1)
-    {
-    // 与目标主机创建连接，并且声明写入内容长度为0
-    esp_err_t err = esp_http_client_open(client, 0);
-
-    //如果连接失败
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to open HTTP connection: %s", esp_err_to_name(err));
-    } 
-    //如果连接成功
-    else {
-
-        //读取目标主机的返回内容的协议头
-        content_length = esp_http_client_fetch_headers(client);
-
-        //如果协议头长度小于0，说明没有成功读取到
-        if (content_length < 0) {
-            ESP_LOGE(TAG, "HTTP client fetch headers failed");
-        } 
-
-        //如果成功读取到了协议头
-        else {
-
-            //读取目标主机通过http的响应内容
-            int data_read = esp_http_client_read_response(client, output_buffer, MAX_HTTP_OUTPUT_BUFFER);
-            if (data_read >= 0) {
-
-                //打印响应内容，包括响应状态，响应体长度及其内容
-                ESP_LOGI(TAG, "HTTP GET Status = %d, content_length = %lld",
-                esp_http_client_get_status_code(client),				//获取响应状态信息
-                esp_http_client_get_content_length(client));			//获取响应信息长度
-                printf("data:%s\n", output_buffer);
-				//对接收到的数据作相应的处理
-                cJSON* root = NULL;
-                root = cJSON_Parse(output_buffer);
-                cJSON* time =cJSON_GetObjectItem(root,"sysTime2");
-                printf("%s\n",time->valuestring);
-
-                // LCD_ShowString(0,0,(u8 *)time->valuestring,RED,WHITE,12,0);
-            } 
-            //如果不成功
-            else {
-                ESP_LOGE(TAG, "Failed to read response");
-            }
-        }
-    }
-
-    //关闭连接
-    esp_http_client_close(client);
-
-    //延时
-    vTaskDelay(3000/portTICK_PERIOD_MS);
-    vTaskDelete(NULL);
-    }
-}
 
 
 
