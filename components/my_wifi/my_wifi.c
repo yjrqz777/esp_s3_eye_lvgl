@@ -18,6 +18,8 @@
 
 const char *TAG = "wifi";
 
+uint8_t wifi_connect_flag = 0;
+
 void start_scan()
 {
     wifi_country_t config = {
@@ -58,17 +60,26 @@ void start_show_pid()
     xTaskCreate(show_pid,"show_pid",1024,NULL,2,NULL);
 };
 
+
 void show_scan()
 {
-    char wifi_ssid[1000] = "";
-    uint16_t ap_num =  0;
+    static char *wifi_ssid;
+    static uint16_t ap_num =  0;
+    static wifi_ap_record_t ap_info[50];
+
+
     esp_wifi_scan_get_ap_num(&ap_num);
     ESP_LOGI("wifi","%d",ap_num);
-    wifi_ap_record_t ap_info[20];
+
     memset(ap_info,0,sizeof(ap_info));
     esp_wifi_scan_get_ap_records(&ap_num,&ap_info);
+
     if(ap_num>20)
         ap_num = 10;
+
+    wifi_ssid = (char *)malloc(ap_num * 15 * sizeof(char)); 
+    memset(wifi_ssid, 0, ap_num * 15 * sizeof(char));
+
     ESP_LOGI("wifi","%d",ap_num);
     // printf("%30s %s %s %s\n", "SSID", "频道", "强度", "MAC地址");
     for (int i = 0; i < ap_num; i++)
@@ -79,8 +90,12 @@ void show_scan()
         strcat(wifi_ssid, "\n");  
         
     }
-    printf("--%s", wifi_ssid);
+    printf("---1%s\n", wifi_ssid);
     lv_roller_set_options(ui_wifiname, wifi_ssid, LV_ROLLER_MODE_INFINITE );
+    // wifi_ssid[0] = "\0";
+    // memset(wifi_ssid,0,sizeof(wifi_ssid));
+    printf("---2%s\n--3%d\n", wifi_ssid,strlen(wifi_ssid));
+    free(wifi_ssid);
     // start_show_pid();
     // vTaskDelay(1000/portTICK_PERIOD_MS);
     // esp_wifi_connect();
@@ -114,10 +129,12 @@ void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *ev
             xTaskCreate(show_scan, "show_scan", 1024*20, NULL, 2, NULL);
             break;
         case WIFI_EVENT_STA_CONNECTED:
-            ESP_LOGE("EVENT_HANDLE", "连接成功");
+            wifi_connect_flag = 1;  
+            ESP_LOGE("EVENT_HANDLE", "wifi连接成功");
             break;
         case WIFI_EVENT_STA_DISCONNECTED:
-            ESP_LOGE("EVENT_HANDLE", "连接失败");
+            wifi_connect_flag = 0;
+            ESP_LOGE("EVENT_HANDLE", "wifi断开连接");
             break;
     }
   }
@@ -155,7 +172,15 @@ void task_list(void)
 }
 
 void wifi_connect( char *ssid, char * password)
-{
+{   
+    // esp_wifi_ap_get_sta_aid
+    if(wifi_connect_flag==1)
+    {
+    ESP_LOGE("wifi_connect", "主动断开...");
+    esp_wifi_disconnect();
+    // esp_wifi_stop();
+    }
+
     wifi_config_t *configs = malloc(sizeof(wifi_config_t));
     configs->sta.bssid_set = 0;
     configs->sta.channel = 0;
@@ -163,12 +188,16 @@ void wifi_connect( char *ssid, char * password)
     configs->sta.sort_method = WIFI_CONNECT_AP_BY_SIGNAL;
     configs->sta.threshold.rssi = -127;
     configs->sta.threshold.authmode = WIFI_AUTH_OPEN;
+    configs->sta.pmf_cfg.capable = true;
+    configs->sta.pmf_cfg.required = false;
     memcpy(configs->sta.ssid, ssid, 32);
     memcpy(configs->sta.password, password, 64);
     // configs.sta.ssid = "ssid[32]";
     // configs.sta.password = "password[64]";
     esp_wifi_set_config(ESP_IF_WIFI_STA,configs);
+
     esp_wifi_connect();
+    // esp_wifi_start();
 }
 
 
@@ -189,9 +218,6 @@ void kill_wifi()
     // esp_netif_destroy(my_ap);
     // vTaskDelete(NULL);
 }
-
-
-
 
 void my_wifi_init(void)
 {
