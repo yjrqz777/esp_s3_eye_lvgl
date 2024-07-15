@@ -87,7 +87,35 @@ void Kalman_Init(Kalman_Typedef *klm, const double klm_Q, const double klm_R)//�
 	klm->R=klm_R;			//R:观测噪声协方差 R参数调整滤波后的曲线与实测曲线的相近程度，R越小越接近(收敛越快)
 }
 
+static int do_i2cdetect_cmd()
+{
+    uint8_t address;
+    printf("     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f\r\n");
+    for (int i = 0; i < 128; i += 16) {
+        printf("%02x: ", i);
+        for (int j = 0; j < 16; j++) {
+            fflush(stdout);
+            address = i + j;
+            i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+            i2c_master_start(cmd);
+            i2c_master_write_byte(cmd, (address << 1) | I2C_MASTER_WRITE, 0x1);
+            i2c_master_stop(cmd);
+            esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 50 / portTICK_PERIOD_MS);
+            i2c_cmd_link_delete(cmd);
+            if (ret == ESP_OK) {
+                printf("%02x ", address);
+            } else if (ret == ESP_ERR_TIMEOUT) {
+                printf("UU ");
+            } else {
+                printf("-- ");
+            }
+        }
+        printf("\r\n");
+    }
 
+    // i2c_driver_delete(I2C_MASTER_NUM);
+    return 0;
+}
 
 void qma7981_main(void)
 {
@@ -102,6 +130,7 @@ void qma7981_main(void)
     float Z_AXIS_A;
     
     ESP_ERROR_CHECK(i2c_master_init());		//初始化I2C
+    do_i2cdetect_cmd();
     ESP_LOGI(TAG, "I2C initialized successfully");
     ESP_ERROR_CHECK(QMA7981_register_read(QMA7981_WHO_AM_I_REG_ADDR, data, 1));		//读取设备ID，正常是0xE7
     ESP_LOGI(TAG, "WHO_AM_I = %X", data[0]);

@@ -28,7 +28,8 @@
 #include "esp_netif.h"
 #include "esp_event.h"
 #include "esp_wifi.h"
-
+#include "esp_adc/adc_oneshot.h"
+#include "esp_adc/adc_cali.h"
 // #include "gui_guider.h"
 // #include "guider_lv_conf.h"
 // #include "guider_fonts.h"
