@@ -31,6 +31,7 @@ https://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp
  | 2024年3月15日
 成功
 
-
+2024年7月15日23:54:31 擦拭flash
+esptool.py --port COM3 erase_flash
 
 
