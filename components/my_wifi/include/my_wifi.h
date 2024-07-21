@@ -10,6 +10,7 @@
 #include <stdint.h>
 
 extern void my_wifi_init(void);
+extern uint8_t OtaFlag;
 void wifi_connect( char *ssid, char * password);
 void kill_wifi();
 void my_wifi_scan();

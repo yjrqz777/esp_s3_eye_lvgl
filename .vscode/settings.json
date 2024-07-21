@@ -92,7 +92,11 @@
     "ui_helpers.h": "c",
     "my_wifi.h": "c",
     "disp_spi.h": "c",
-    "esp_http_client.h": "c"
+    "esp_http_client.h": "c",
+    "string.h": "c",
+    "stdio.h": "c",
+    "esp_https_ota.h": "c",
+    "esp_partition.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
   "fileheader.LastModifiedBy": "YJRQZ777",

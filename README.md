@@ -35,3 +35,5 @@ https://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp
 esptool.py --port COM3 erase_flash
 
 
+2024年7月21日16:25:02 用巴发云测试OTA
+

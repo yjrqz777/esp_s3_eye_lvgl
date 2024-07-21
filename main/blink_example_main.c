@@ -163,7 +163,7 @@ void app_main(void)
     main_cpp();
     lv_port_indev_init();  
 
-    xTaskCreate(qma7981_main, "qma7981_main", 4096, NULL, 2, NULL);
+    // xTaskCreate(qma7981_main, "qma7981_main", 4096, NULL, 2, NULL);
     
     // Butten qqqq;
     // extern int main_cpp();

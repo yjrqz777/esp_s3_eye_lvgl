@@ -11,12 +11,15 @@
 #include "esp_event.h"
 #include "esp_wifi.h"
 #include "esp_log.h"
+#include "esp_https_ota.h"
 // F:\Espressif\frameworks\esp-idf-v5.0.2\components\esp_http_client\include\esp_http_client.h
 
 #include "ui.h"
 #include "to_time.h"
 
 const char *TAG = "wifi";
+
+uint8_t OtaFlag = 0;
 
 uint8_t wifi_connect_flag = 0;
 
@@ -111,10 +114,13 @@ void show_scan()
 // s8.2：调用函数 esp_wifi_stop() 终止 Wi-Fi 驱动程序。
 
 // s8.3：调用函数 esp_wifi_deinit() 清理 Wi-Fi 驱动程序。
-
+#include "esp_event.h"
 void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data)
 {
-  ESP_LOGI("EVENT_HANDLE", "BASE:%s, ID:%ld", base, id);
+//   ESP_LOGI("EVENT_HANDLE", "BASE:%s, ID:%ld", base, id);
+
+
+
   if(base == WIFI_EVENT)
   {
     switch (id)
@@ -134,6 +140,7 @@ void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *ev
         case WIFI_EVENT_STA_DISCONNECTED:
             wifi_connect_flag = 0;
             ESP_LOGE("EVENT_HANDLE", "wifi断开连接");
+            OtaFlag = 0;
             break;
     }
   }
@@ -146,12 +153,57 @@ void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *ev
                 vTaskDelay(2000/portTICK_PERIOD_MS);
                 // xTaskCreate(kill_wifi, "kill_wifi", 1024, NULL, 2, NULL);
                 xTaskCreate(http_test_task, "http_test_task", 8192, NULL, 5, NULL);
+                OtaFlag = 1;
                 break;
             case IP_EVENT_STA_LOST_IP:
+                OtaFlag = 0;
                 ESP_LOGE("EVENT_HANDLE", "IP_EVENT_STA_LOST_IP");
                 break;
         }
     }
+    else if(base == ESP_HTTPS_OTA_EVENT)
+    {
+    // ESP_HTTPS_OTA_START,                    /*!< OTA started */
+    // ESP_HTTPS_OTA_CONNECTED,                /*!< Connected to server */
+    // ESP_HTTPS_OTA_GET_IMG_DESC,             /*!< Read app description from image header */
+    // ESP_HTTPS_OTA_VERIFY_CHIP_ID,           /*!< Verify chip id of new image */
+    // ESP_HTTPS_OTA_DECRYPT_CB,               /*!< Callback to decrypt function */
+    // ESP_HTTPS_OTA_WRITE_FLASH,              /*!< Flash write operation */
+    // ESP_HTTPS_OTA_UPDATE_BOOT_PARTITION,    /*!< Boot partition update after successful ota update */
+    // ESP_HTTPS_OTA_FINISH,                   /*!< OTA finished */
+    // ESP_HTTPS_OTA_ABORT,                    /*!< OTA aborted */        
+        switch (id)
+        {
+            case ESP_HTTPS_OTA_START:
+                ESP_LOGI("EVENT_HANDLE", "IOTA 开始");
+                break;
+            case ESP_HTTPS_OTA_CONNECTED:
+                ESP_LOGI("EVENT_HANDLE", "连接 to 服务器");
+                break;
+            case ESP_HTTPS_OTA_GET_IMG_DESC:
+                ESP_LOGI("EVENT_HANDLE", "Read app 描述 from image 头");
+                break;
+            case ESP_HTTPS_OTA_VERIFY_CHIP_ID:
+                ESP_LOGI("EVENT_HANDLE", "验证 chip id of new image");
+                break;
+            case ESP_HTTPS_OTA_DECRYPT_CB:
+                ESP_LOGI("EVENT_HANDLE", "Callback to 解密 function");
+                break;
+            case ESP_HTTPS_OTA_WRITE_FLASH:
+                ESP_LOGI("EVENT_HANDLE", "Flash 写 运行");
+                break;
+            case ESP_HTTPS_OTA_UPDATE_BOOT_PARTITION:
+                ESP_LOGI("EVENT_HANDLE", "Boot 分区 更新 之后 成功 ota 更新");
+                break;
+            case ESP_HTTPS_OTA_FINISH:
+                ESP_LOGI("EVENT_HANDLE", "OTA 完成");
+                break;
+            case ESP_HTTPS_OTA_ABORT:
+                ESP_LOGI("EVENT_HANDLE", "OTA 中止");
+                break;
+        }
+    }
+
 }
 
 
@@ -243,7 +295,7 @@ void my_wifi_init(void)
 
 
     xTaskCreate(task_list, "task_list", 10240, NULL, 1, NULL);
-
+    xTaskCreate(MyOta, "MyOta", 8192, NULL, 5, NULL);
     esp_wifi_set_mode(WIFI_MODE_STA);
 
     esp_wifi_start();

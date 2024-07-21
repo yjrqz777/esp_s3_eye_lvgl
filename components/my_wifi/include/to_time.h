@@ -11,6 +11,6 @@
 void my_time(void *pvParameters);
 
 void http_test_task(void *pvParameters);
-
+extern void MyOta(void *pvParameters);
 
 #endif
