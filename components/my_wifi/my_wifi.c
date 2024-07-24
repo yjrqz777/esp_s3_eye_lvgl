@@ -175,7 +175,7 @@ void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *ev
         switch (id)
         {
             case ESP_HTTPS_OTA_START:
-                ESP_LOGI("EVENT_HANDLE", "IOTA 开始");
+                ESP_LOGI("EVENT_HANDLE", "OTA 开始");
                 break;
             case ESP_HTTPS_OTA_CONNECTED:
                 ESP_LOGI("EVENT_HANDLE", "连接 to 服务器");
@@ -190,7 +190,7 @@ void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *ev
                 ESP_LOGI("EVENT_HANDLE", "Callback to 解密 function");
                 break;
             case ESP_HTTPS_OTA_WRITE_FLASH:
-                ESP_LOGI("EVENT_HANDLE", "Flash 写 运行");
+                // ESP_LOGI("EVENT_HANDLE", "Flash 写 运行");
                 break;
             case ESP_HTTPS_OTA_UPDATE_BOOT_PARTITION:
                 ESP_LOGI("EVENT_HANDLE", "Boot 分区 更新 之后 成功 ota 更新");

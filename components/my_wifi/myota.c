@@ -54,6 +54,69 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
     }
     return ESP_OK;
 }
+
+
+
+
+esp_err_t my_esp_https_ota(const esp_https_ota_config_t *ota_config,esp_app_desc_t *desc)
+{
+    if (ota_config == NULL || ota_config->http_config == NULL) {
+        ESP_LOGE(TAG, "esp_https_ota: Invalid argument");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    esp_https_ota_handle_t https_ota_handle = NULL;
+    esp_err_t err = esp_https_ota_begin(ota_config, &https_ota_handle);
+    if (https_ota_handle == NULL) {
+        return ESP_FAIL;
+    }
+    // vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    esp_app_desc_t new_app_info;
+    err = esp_https_ota_get_img_desc(https_ota_handle,&new_app_info);
+    ESP_LOGE("-------------", "version: %s", desc->version);
+    ESP_LOGI(TAG, "version: %s", new_app_info.version);
+    ESP_LOGI(TAG, "strcmp: %d", strcmp(desc->version, new_app_info.version));
+    ESP_LOGI(TAG, "大: %d", strcmp("asd", "a"));
+    ESP_LOGI(TAG, "小: %d", strcmp("asd", "asdf"));
+    ESP_LOGI(TAG, "等: %d", strcmp("asd", "asd"));
+    ESP_LOGI(TAG, "project_name: %s", new_app_info.project_name);
+    ESP_LOGI(TAG, "time: %s", new_app_info.time);
+    ESP_LOGI(TAG, "date: %s", new_app_info.date);
+    ESP_LOGI(TAG, "idf_ver: %s", new_app_info.idf_ver);
+    // ESP_LOGI(TAG, "app_elf_sha256: %s", new_app_info.app_elf_sha256);
+    // ESP_LOGI(TAG, "size: %d", new_app_info.size);
+    // ESP_LOGI(TAG, "secure_version: %d", new_app_info.secure_version);
+    // ESP_LOGI(TAG, "magic_word: %d", new_app_info.magic_word);
+    // ESP_LOGI(TAG, "reserv1: %d", new_app_info.reserv1);
+    ESP_LOGE("OOOOOOOOO","---------err---------%d",err);
+
+    while (1) {
+        err = esp_https_ota_perform(https_ota_handle);
+        if (err != ESP_ERR_HTTPS_OTA_IN_PROGRESS) {
+            break;
+        }
+    }
+
+    if (err != ESP_OK) {
+        esp_https_ota_abort(https_ota_handle);
+        return err;
+    }
+
+    esp_err_t ota_finish_err = esp_https_ota_finish(https_ota_handle);
+    if (ota_finish_err != ESP_OK) {
+        return ota_finish_err;
+    }
+    return ESP_OK;
+}
+
+
+
+
+
+
+
+
 void MyOta(void *pvParameter)
 {
     vTaskDelay(2000 / portTICK_PERIOD_MS);
@@ -76,11 +139,15 @@ void MyOta(void *pvParameter)
     while (1) {
         if(OtaFlag)
         {
-            ESP_LOGI(TAG, "尝试 to download update from %s", config.url);
-            esp_err_t ret = esp_https_ota(&ota_config);
+            esp_app_desc_t *desc= NULL;
+        desc = esp_app_get_description();
+        // print_sha256(desc->app_elf_sha256, "SHA-2561111 for current firmware: ");
+        ESP_LOGI(TAG, "尝试 to download update from %s", config.url);
+            esp_err_t ret = my_esp_https_ota(&ota_config,desc);
             if (ret == ESP_OK) {
                 ESP_LOGI(TAG, "OTA 成功, Rebooting...");
-                esp_restart();
+                OtaFlag =0;
+                // esp_restart();
             } else {
                 ESP_LOGE(TAG, "Firmware upgrade 失败");
             }

@@ -37,3 +37,6 @@ esptool.py --port COM3 erase_flash
 
 2024年7月21日16:25:02 用巴发云测试OTA
 
+
+2024年7月24日23:35:32 IDF使用5.1.2
+
