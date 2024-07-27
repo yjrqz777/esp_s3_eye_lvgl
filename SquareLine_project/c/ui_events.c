@@ -9,3 +9,8 @@ void test_wifi_sacn(lv_event_t * e)
 {
 	// Your code here
 }
+
+void wifi_switch(lv_event_t * e)
+{
+	// Your code here
+}

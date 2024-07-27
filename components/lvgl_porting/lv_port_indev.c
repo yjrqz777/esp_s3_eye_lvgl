@@ -172,9 +172,9 @@ void lv_port_indev_init(void)
 
 
 
-    lv_group_add_obj(group2,ui_manbtn);
-    lv_group_add_obj(group2,ui_testbtn);
-    lv_group_add_obj(group2,ui_wifiswitch);
+    lv_group_add_obj(group2,ui_backbtn2);
+    lv_group_add_obj(group2,ui_nextbtn2);
+    lv_group_add_obj(group2,ui_Switch1);
 
     lv_group_add_obj(group2,ui_scanbtn);
     lv_group_add_obj(group2,ui_wifiname);
@@ -185,12 +185,13 @@ void lv_port_indev_init(void)
     // lv_group_add_obj(group2,ui_Switch2);
     // lv_group_add_obj(group2,ui_TextArea2);
 
-    lv_group_add_obj(group3,ui_wifibtn32);
-    lv_group_add_obj(group3,ui_Keyboard2);
-    lv_group_add_obj(group3,ui_Button5);
-    lv_group_add_obj(group3,ui_Switch1);
-    lv_group_add_obj(group3,ui_TextArea1);
-
+    lv_group_add_obj(group3,ui_backbtn3);
+    lv_group_add_obj(group3,ui_nextbtn3);
+    lv_group_add_obj(group3,ui_scanbtn2);
+    lv_group_add_obj(group3,ui_Switch3);
+    lv_group_add_obj(group3,ui_TextArea3);
+    lv_group_add_obj(group3,ui_Keyboard1);
+    // lv_group_add_obj(group3,ui_TextArea3);
 
     // lv_group_add_obj(group2,ui_Keyboard1);
 
