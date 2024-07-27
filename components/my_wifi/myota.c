@@ -90,7 +90,9 @@ esp_err_t my_esp_https_ota(const esp_https_ota_config_t *ota_config,esp_app_desc
     // ESP_LOGI(TAG, "magic_word: %d", new_app_info.magic_word);
     // ESP_LOGI(TAG, "reserv1: %d", new_app_info.reserv1);
     ESP_LOGE("OOOOOOOOO","---------err---------%d",err);
-
+    if (err != ESP_OK) {
+        return err;
+    }
     while (1) {
         err = esp_https_ota_perform(https_ota_handle);
         if (err != ESP_ERR_HTTPS_OTA_IN_PROGRESS) {

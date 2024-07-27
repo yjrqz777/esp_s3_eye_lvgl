@@ -136,10 +136,13 @@ void run_on_event(void *handler_arg, esp_event_base_t base, int32_t id, void *ev
         case WIFI_EVENT_STA_CONNECTED:
             wifi_connect_flag = 1;  
             ESP_LOGE("EVENT_HANDLE", "wifi连接成功");
+            lv_obj_add_state(ui_Switch2, LV_STATE_CHECKED);	// 开
+            
             break;
         case WIFI_EVENT_STA_DISCONNECTED:
             wifi_connect_flag = 0;
             ESP_LOGE("EVENT_HANDLE", "wifi断开连接");
+            lv_obj_clear_state(ui_Switch2, LV_STATE_CHECKED);	// 关
             OtaFlag = 0;
             break;
     }

@@ -24,6 +24,8 @@ extern lv_obj_t * ui_Roller1;
 extern lv_obj_t * ui_date;
 extern lv_obj_t * ui_time;
 extern lv_obj_t * ui_Button1;
+extern lv_obj_t * ui_Container3;
+extern lv_obj_t * ui_Image3;
 // SCREEN: ui_Screen2
 void ui_Screen2_screen_init(void);
 extern lv_obj_t * ui_Screen2;

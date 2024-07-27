@@ -19,6 +19,8 @@ lv_obj_t * ui_Roller1;
 lv_obj_t * ui_date;
 lv_obj_t * ui_time;
 lv_obj_t * ui_Button1;
+lv_obj_t * ui_Container3;
+lv_obj_t * ui_Image3;
 
 
 // SCREEN: ui_Screen2
