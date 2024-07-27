@@ -10,6 +10,8 @@
 extern "C" {
 #endif
 
+void test_wifi_sacn(lv_event_t * e);
+
 #ifdef __cplusplus
 } /*extern "C"*/
 #endif

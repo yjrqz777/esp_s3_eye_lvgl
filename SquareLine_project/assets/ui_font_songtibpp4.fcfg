@@ -10,7 +10,7 @@
   "ranges": [
     "0x20-0x7f"
   ],
-  "symbols": "扫描连接确定成功",
+  "symbols": "扫描连接成功确定年月日",
   "customparams": "--no-compress --no-prefilter",
   "uploaded": false
 }
