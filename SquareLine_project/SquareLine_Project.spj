@@ -2068,7 +2068,7 @@
                   {
                     "nid": 1136407960,
                     "strtype": "IMAGE/Asset",
-                    "strval": "",
+                    "strval": "assets\\333.png",
                     "InheritedType": 5
                   },
                   {
@@ -2088,7 +2088,7 @@
                   {
                     "nid": 1612401853,
                     "strtype": "IMAGE/Scale",
-                    "integer": 256,
+                    "integer": 100,
                     "InheritedType": 6
                   },
                   {
@@ -10417,7 +10417,7 @@
     "theme_color2": 0,
     "uiExportFolderPath": "E:\\Documents\\esp32\\code\\board\\esp_s3_eye_lvgl\\components\\squareline_ui",
     "projectExportFolderPath": "E:\\Documents\\esp32\\code\\board\\esp_s3_eye_lvgl\\SquareLine_project",
-    "backup_cnt": 33,
+    "backup_cnt": 34,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": "C_FILE",

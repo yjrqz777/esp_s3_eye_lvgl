@@ -154,7 +154,7 @@ void test_picture(void)
     }
 
     lv_obj_t *list = lv_list_create(lv_scr_act());
-    lv_obj_set_size(list, 200, 240);
+    lv_obj_set_size(list, 240, 200);
     lv_obj_set_style_border_width(list, 0, LV_STATE_DEFAULT);
     lv_obj_align(list, LV_ALIGN_LEFT_MID, 0, 0);
 
@@ -176,12 +176,14 @@ void test_picture(void)
             lv_obj_t *btn = lv_list_add_btn(list, LV_SYMBOL_IMAGE, strlwr(p_dirent->d_name));
             lv_group_add_obj(g_btn_op_group, btn);
             lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_CLICKED, (void *) img);
+            // ESP_LOGE("test_picture", "while");
         } else {
             closedir(p_dir_stream);
+            // ESP_LOGE("test_picture", "break");
             break;
         }
     }
-
+    // ESP_LOGE("test_picture", "-------------------------------");
 }
 
 
