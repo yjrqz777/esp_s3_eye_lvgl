@@ -4,14 +4,14 @@
 #ifndef TEST_UI_H
 #define TEST_UI_H
 
-
+#include "lvgl.h"
 void test_main(void);
 
-void test_picture(void);
+void test_picture(lv_obj_t * ui_Screen4);
 
 
 
-
+extern lv_obj_t *list;
 
 
 

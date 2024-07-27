@@ -64,6 +64,16 @@ extern lv_obj_t * ui_Switch3;
 void ui_event_TextArea3(lv_event_t * e);
 extern lv_obj_t * ui_TextArea3;
 extern lv_obj_t * ui_Keyboard1;
+// SCREEN: ui_Screen4
+void ui_Screen4_screen_init(void);
+extern lv_obj_t * ui_Screen4;
+extern lv_obj_t * ui_Container4;
+void ui_event_backbtn4(lv_event_t * e);
+extern lv_obj_t * ui_backbtn4;
+extern lv_obj_t * ui_Label10;
+void ui_event_nextbtn4(lv_event_t * e);
+extern lv_obj_t * ui_nextbtn4;
+extern lv_obj_t * ui_Label11;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_333_png);    // assets\333.png

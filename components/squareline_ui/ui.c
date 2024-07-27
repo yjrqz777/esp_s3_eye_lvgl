@@ -63,6 +63,18 @@ lv_obj_t * ui_Switch3;
 void ui_event_TextArea3(lv_event_t * e);
 lv_obj_t * ui_TextArea3;
 lv_obj_t * ui_Keyboard1;
+
+
+// SCREEN: ui_Screen4
+void ui_Screen4_screen_init(void);
+lv_obj_t * ui_Screen4;
+lv_obj_t * ui_Container4;
+void ui_event_backbtn4(lv_event_t * e);
+lv_obj_t * ui_backbtn4;
+lv_obj_t * ui_Label10;
+void ui_event_nextbtn4(lv_event_t * e);
+lv_obj_t * ui_nextbtn4;
+lv_obj_t * ui_Label11;
 lv_obj_t * ui____initial_actions0;
 const lv_img_dsc_t * ui_imgset_[1] = {&ui_img_333_png};
 
@@ -146,9 +158,9 @@ void ui_event_nextbtn3(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 30, 0, &ui_Screen1_screen_init);
-    lv_indev_set_group(indev_keypad, group1);
-    lv_group_focus_obj(ui_wifibtn);
+        _ui_screen_change(&ui_Screen4, LV_SCR_LOAD_ANIM_FADE_ON, 30, 0, &ui_Screen4_screen_init);
+    lv_indev_set_group(indev_keypad, group4);
+    lv_group_focus_obj(ui_backbtn4);
     }
 }
 void ui_event_TextArea3(lv_event_t * e)
@@ -157,6 +169,26 @@ void ui_event_TextArea3(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         _ui_keyboard_set_target(ui_Keyboard1,  ui_TextArea3);
+    }
+}
+void ui_event_backbtn4(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 30, 0, &ui_Screen3_screen_init);
+    lv_indev_set_group(indev_keypad, group3);
+    lv_group_focus_obj(ui_backbtn3);
+    }
+}
+void ui_event_nextbtn4(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 30, 0, &ui_Screen1_screen_init);
+    lv_indev_set_group(indev_keypad, group1);
+    lv_group_focus_obj(ui_wifibtn);
     }
 }
 
@@ -171,6 +203,7 @@ void ui_init(void)
     ui_Screen1_screen_init();
     ui_Screen2_screen_init();
     ui_Screen3_screen_init();
+    ui_Screen4_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Screen1);
 }

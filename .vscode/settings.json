@@ -96,7 +96,8 @@
     "string.h": "c",
     "stdio.h": "c",
     "esp_https_ota.h": "c",
-    "esp_partition.h": "c"
+    "esp_partition.h": "c",
+    "lv_port_indev.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
   "fileheader.LastModifiedBy": "YJRQZ777",

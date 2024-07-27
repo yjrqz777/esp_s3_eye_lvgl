@@ -16,7 +16,7 @@
 
 #include "ui.h"
 #include "ui_helpers.h"
-
+#include "test_ui.h"
 
 /*********************
  *      DEFINES
@@ -71,6 +71,7 @@ static lv_indev_state_t encoder_state;
 lv_group_t* group1;
 lv_group_t* group2;
 lv_group_t* group3;
+lv_group_t* group4;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
@@ -139,6 +140,7 @@ void lv_port_indev_init(void)
     group1 = lv_group_create();
     group2 = lv_group_create();
     group3 = lv_group_create();
+    group4 = lv_group_create();
 	// lv_group_set_default(group);
     
     //运行demo
@@ -191,9 +193,12 @@ void lv_port_indev_init(void)
     lv_group_add_obj(group3,ui_Switch3);
     lv_group_add_obj(group3,ui_TextArea3);
     // lv_group_add_obj(group3,ui_TextArea3);
-
     lv_group_add_obj(group3,ui_Keyboard1);
 
+    lv_group_add_obj(group4,ui_backbtn4);
+    lv_group_add_obj(group4,ui_nextbtn4);
+    lv_group_add_obj(group4,list);
+    // lv_group_add_obj(group3,ui_scanbtn2);
 
     /*Later you should create group(s) with `lv_group_t * group = lv_group_create()`,
      *add objects to the group with `lv_group_add_obj(group, obj)`
