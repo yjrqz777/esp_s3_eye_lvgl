@@ -167,8 +167,8 @@ void lv_port_indev_init(void)
 
     lv_group_add_obj(group1,ui_wifibtn);
     lv_group_add_obj(group1,ui_Roller1);
-    lv_group_focus_obj(ui_wifibtn);
     lv_indev_set_group(indev_keypad, group1);
+    lv_group_focus_obj(ui_wifibtn);
 
 
 
@@ -190,10 +190,9 @@ void lv_port_indev_init(void)
     lv_group_add_obj(group3,ui_scanbtn2);
     lv_group_add_obj(group3,ui_Switch3);
     lv_group_add_obj(group3,ui_TextArea3);
-    lv_group_add_obj(group3,ui_Keyboard1);
     // lv_group_add_obj(group3,ui_TextArea3);
 
-    // lv_group_add_obj(group2,ui_Keyboard1);
+    lv_group_add_obj(group3,ui_Keyboard1);
 
 
     /*Later you should create group(s) with `lv_group_t * group = lv_group_create()`,

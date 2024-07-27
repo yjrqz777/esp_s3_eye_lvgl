@@ -100,5 +100,6 @@ void ui_Screen3_screen_init(void)
 
     lv_obj_add_event_cb(ui_backbtn3, ui_event_backbtn3, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_nextbtn3, ui_event_nextbtn3, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_TextArea3, ui_event_TextArea3, LV_EVENT_ALL, NULL);
 
 }

@@ -620,18 +620,6 @@
                         "strtype": "_style/Gradient direction",
                         "strval": "HOR",
                         "InheritedType": 3
-                      },
-                      {
-                        "nid": -1303611519,
-                        "strtype": "_style/Blend mode",
-                        "strval": "NORMAL",
-                        "InheritedType": 3
-                      },
-                      {
-                        "nid": -2025295832,
-                        "strtype": "_style/Blend_opacity",
-                        "integer": 150,
-                        "InheritedType": 6
                       }
                     ],
                     "InheritedType": 1
@@ -944,22 +932,7 @@
               },
               {
                 "part": "lv.PART.MAIN",
-                "childs": [
-                  {
-                    "nid": -246892878,
-                    "strtype": "_style/StyleState",
-                    "strval": "DEFAULT",
-                    "childs": [
-                      {
-                        "nid": -1612151970,
-                        "strtype": "_style/Blend mode",
-                        "strval": "MULTIPLY",
-                        "InheritedType": 3
-                      }
-                    ],
-                    "InheritedType": 1
-                  }
-                ],
+                "childs": [],
                 "nid": -875928343,
                 "strtype": "ROLLER/Style_main",
                 "strval": "lv.PART.MAIN, Text, Rectangle",
@@ -1020,8 +993,8 @@
                 "flags": 17,
                 "strtype": "OBJECT/Position",
                 "intarray": [
-                  38,
-                  -6
+                  52,
+                  0
                 ],
                 "InheritedType": 7
               },
@@ -1321,8 +1294,8 @@
                 "flags": 17,
                 "strtype": "OBJECT/Position",
                 "intarray": [
-                  39,
-                  43
+                  50,
+                  49
                 ],
                 "InheritedType": 7
               },
@@ -9276,6 +9249,71 @@
                 "strtype": "TEXTAREA/Max_text_length",
                 "integer": 98989898,
                 "InheritedType": 6
+              },
+              {
+                "disabled": false,
+                "nid": -44919000,
+                "strtype": "TEXTAREA/EventHandler",
+                "strval": "CLICKED",
+                "childs": [
+                  {
+                    "nid": -904755664,
+                    "strtype": "_custom/name",
+                    "strval": "Event9",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": -1038601922,
+                    "strtype": "_custom/condition_C",
+                    "strval": "",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": 1053222529,
+                    "strtype": "_custom/condition_P",
+                    "strval": "",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": -61791008,
+                    "strtype": "_custom/action",
+                    "strval": "KEYBOARD SET TARGET",
+                    "childs": [
+                      {
+                        "nid": -2019181321,
+                        "strtype": "KEYBOARD SET TARGET/Name",
+                        "strval": "KEYBOARD SET TARGET",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1705597944,
+                        "strtype": "KEYBOARD SET TARGET/Call",
+                        "strval": "KeyboardSetTarget( <{Keyboard}>,  <{TextArea}>)",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": -1854823162,
+                        "strtype": "KEYBOARD SET TARGET/CallC",
+                        "strval": "_ui_keyboard_set_target(<{Keyboard}>,  <{TextArea}>);",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1505308547,
+                        "strtype": "KEYBOARD SET TARGET/Keyboard",
+                        "strval": "GUID16301902-179506S8683209",
+                        "InheritedType": 9
+                      },
+                      {
+                        "nid": -1527962784,
+                        "strtype": "KEYBOARD SET TARGET/TextArea",
+                        "strval": "GUID16353732-177872S3613209",
+                        "InheritedType": 9
+                      }
+                    ],
+                    "InheritedType": 10
+                  }
+                ],
+                "InheritedType": 4
               }
             ],
             "saved_objtypeKey": "TEXTAREA"
@@ -9812,7 +9850,7 @@
     "theme_color2": 0,
     "uiExportFolderPath": "E:\\Documents\\esp32\\code\\board\\esp_s3_eye_lvgl\\components\\squareline_ui",
     "projectExportFolderPath": "E:\\Documents\\esp32\\code\\board\\esp_s3_eye_lvgl\\SquareLine_project",
-    "backup_cnt": 27,
+    "backup_cnt": 29,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": "C_FILE",

@@ -58,6 +58,7 @@ lv_obj_t * ui_Label8;
 lv_obj_t * ui_scanbtn2;
 lv_obj_t * ui_Label9;
 lv_obj_t * ui_Switch3;
+void ui_event_TextArea3(lv_event_t * e);
 lv_obj_t * ui_TextArea3;
 lv_obj_t * ui_Keyboard1;
 lv_obj_t * ui____initial_actions0;
@@ -93,7 +94,6 @@ void ui_event_backbtn2(lv_event_t * e)
     lv_indev_set_group(indev_keypad, group1);
     lv_group_focus_obj(ui_wifibtn);
     }
-
 }
 void ui_event_nextbtn2(lv_event_t * e)
 {
@@ -138,7 +138,6 @@ void ui_event_backbtn3(lv_event_t * e)
     lv_indev_set_group(indev_keypad, group2);
     lv_group_focus_obj(ui_backbtn2);
     }
-
 }
 void ui_event_nextbtn3(lv_event_t * e)
 {
@@ -149,7 +148,14 @@ void ui_event_nextbtn3(lv_event_t * e)
     lv_indev_set_group(indev_keypad, group1);
     lv_group_focus_obj(ui_wifibtn);
     }
-
+}
+void ui_event_TextArea3(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_keyboard_set_target(ui_Keyboard1,  ui_TextArea3);
+    }
 }
 
 ///////////////////// SCREENS ////////////////////

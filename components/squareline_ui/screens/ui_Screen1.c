@@ -23,8 +23,6 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_style_bg_opa(ui_wifibtn, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_color(ui_wifibtn, lv_color_hex(0xF90202), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui_wifibtn, LV_GRAD_DIR_HOR, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_blend_mode(ui_wifibtn, LV_BLEND_MODE_NORMAL, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_opa(ui_wifibtn, 150, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Label4 = lv_label_create(ui_wifibtn);
     lv_obj_set_width(ui_Label4, LV_SIZE_CONTENT);   /// 1
@@ -44,13 +42,12 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_x(ui_Roller1, -64);
     lv_obj_set_y(ui_Roller1, 30);
     lv_obj_set_align(ui_Roller1, LV_ALIGN_CENTER);
-    lv_obj_set_style_blend_mode(ui_Roller1, LV_BLEND_MODE_MULTIPLY, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_date = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_date, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_date, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_date, 38);
-    lv_obj_set_y(ui_date, -6);
+    lv_obj_set_x(ui_date, 52);
+    lv_obj_set_y(ui_date, 0);
     lv_obj_set_align(ui_date, LV_ALIGN_CENTER);
     lv_label_set_text(ui_date, "2024年3月14日");
     lv_obj_set_style_text_font(ui_date, &ui_font_songtibpp4, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -58,8 +55,8 @@ void ui_Screen1_screen_init(void)
     ui_time = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_time, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_time, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_time, 39);
-    lv_obj_set_y(ui_time, 43);
+    lv_obj_set_x(ui_time, 50);
+    lv_obj_set_y(ui_time, 49);
     lv_obj_set_align(ui_time, LV_ALIGN_CENTER);
     lv_label_set_text(ui_time, "21:50");
 
