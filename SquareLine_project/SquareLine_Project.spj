@@ -10149,6 +10149,7 @@
               {
                 "nid": 165236393,
                 "strtype": "KEYBOARD/Target_textarea",
+                "strval": "-",
                 "InheritedType": 9
               },
               {
@@ -12212,7 +12213,7 @@
     "theme_color2": 0,
     "uiExportFolderPath": "E:\\Documents\\esp32\\code\\board\\esp_s3_eye_lvgl\\components\\squareline_ui",
     "projectExportFolderPath": "E:\\Documents\\esp32\\code\\board\\esp_s3_eye_lvgl\\SquareLine_project",
-    "backup_cnt": 39,
+    "backup_cnt": 48,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": "C_FILE",

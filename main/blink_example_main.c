@@ -42,6 +42,8 @@
 #include "ui.h"
 #include "ui_helpers.h"
 
+
+#include "MyTinyUSB.h"
 void lv_tick_task(void *arg)
 {
     lv_tick_inc(1);
@@ -164,6 +166,7 @@ void app_main(void)
     lv_port_indev_init();  
 
     // xTaskCreate(qma7981_main, "qma7981_main", 4096, NULL, 2, NULL);
+    xTaskCreate(MyTinyUSB_Main, "MyTinyUSB_Main", 4096, NULL, 2, NULL);
     
     // Butten qqqq;
     // extern int main_cpp();

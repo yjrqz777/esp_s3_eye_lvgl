@@ -1,2 +1,7 @@
+# dependencies:
+#   espressif/led_strip: "^2.0.0"
+# dependencies:
+#   esp_tinyusb: "~1.0.0"
 dependencies:
-  espressif/led_strip: "^2.0.0"
+  espressif/esp_tinyusb: "^1.2"
+  # idf: "^5.0"

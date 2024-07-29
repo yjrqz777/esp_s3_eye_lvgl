@@ -39,7 +39,10 @@ void list_dir(const char *path) {
     closedir(dir);  
 }  
 
-
+sdmmc_card_t* return_sdmmc_card_t(const sdmmc_card_t* card)
+{
+    return card;
+}
 
 void fat_fs(void)
 {
@@ -106,7 +109,8 @@ void fat_fs(void)
 
     // Card has been initialized, print its properties
     sdmmc_card_print_info(stdout, card);
-
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    MyTinyUSB_TEST(card);
     // Use POSIX and C standard library functions to work with files:
 
     // First create a file.
@@ -116,7 +120,7 @@ void fat_fs(void)
     // DIR *p_dir_stream = opendir(MOUNT_POINT);
     // p_dirent = readdir(p_dir_stream);
     // ESP_LOGI(TAG, "Opening file %s", p_dirent->d_name);
-    list_dir(MOUNT_POINT);  
+    // list_dir(MOUNT_POINT);  
 
 
     // const char *file_hello = MOUNT_POINT"/hello.txt";
