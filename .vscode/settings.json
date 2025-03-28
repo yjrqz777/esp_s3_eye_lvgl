@@ -119,5 +119,6 @@
       "priority": 4
     }
   ],
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "idf.port": "/dev/ttyACM0"
 }

@@ -1,21 +1,24 @@
 dependencies:
-  espressif/esp_tinyusb:
-    component_hash: f151d680d6847bfcfd5d8eb6d1c3ff926c208e6b963b2e83643a141bc70baa15
+  cherry-embedded/cherryusb:
+    component_hash: d8bb4f3174d867ee1ebdc59687d0ccdff3179db87d8abc806fd5b22826c36267
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
     source:
-      service_url: https://api.components.espressif.com/
+      registry_url: https://components.espressif.com/
       type: service
-    version: 1.4.4
-  espressif/tinyusb:
-    component_hash: 214989d502fc168241a4a4f83b097d8ac44a93cd6f1787b4ac10069a8b3bebd3
-    source:
-      service_url: https://api.components.espressif.com/
-      type: service
-    version: 0.15.0~10
+    targets:
+    - esp32s2
+    - esp32s3
+    - esp32p4
+    version: 1.4.2
   idf:
-    component_hash: null
     source:
       type: idf
-    version: 5.1.2
-manifest_hash: fecefdfa7705d9237d944073c3ec4cca3db859d9a525600dfa0ac452d1540001
+    version: 5.1.5
+direct_dependencies:
+- cherry-embedded/cherryusb
+manifest_hash: 7cddbd9465415c9e0ed87f02e37d08e1b9025abf9be37f691ee581204feab5d3
 target: esp32s3
-version: 1.0.0
+version: 2.0.0

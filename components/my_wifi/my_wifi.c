@@ -298,7 +298,7 @@ void my_wifi_init(void)
 
 
     xTaskCreate(task_list, "task_list", 10240, NULL, 1, NULL);
-    xTaskCreate(MyOta, "MyOta", 8192, NULL, 5, NULL);
+    // xTaskCreate(MyOta, "MyOta", 8192, NULL, 5, NULL);
     esp_wifi_set_mode(WIFI_MODE_STA);
 
     esp_wifi_start();

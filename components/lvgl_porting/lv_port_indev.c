@@ -195,9 +195,9 @@ void lv_port_indev_init(void)
     // lv_group_add_obj(group3,ui_TextArea3);
     lv_group_add_obj(group3,ui_Keyboard1);
 
-    lv_group_add_obj(group4,ui_backbtn4);
-    lv_group_add_obj(group4,ui_nextbtn4);
-    lv_group_add_obj(group4,list);
+    // lv_group_add_obj(group4,ui_backbtn4);
+    // lv_group_add_obj(group4,ui_nextbtn4);
+    // lv_group_add_obj(group4,list);
     // lv_group_add_obj(group3,ui_scanbtn2);
 
     /*Later you should create group(s) with `lv_group_t * group = lv_group_create()`,

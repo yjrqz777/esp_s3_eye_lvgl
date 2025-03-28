@@ -9,8 +9,8 @@
 #include <errno.h>
 #include <dirent.h>
 #include "esp_check.h"
-#include "tinyusb.h"
-#include "tusb_msc_storage.h"
+// #include "tinyusb.h"
+// #include "tusb_msc_storage.h"
 #include "diskio_impl.h"
 #include "diskio_sdmmc.h"
 
