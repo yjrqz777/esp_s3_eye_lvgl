@@ -12,7 +12,7 @@ idf_component_register(SRCS "blink_example_main.c"
                                  lvgl_esp32_drivers 
                                  lvgl 
                                  lvgl_porting 
-                                 my_tinyUSB
+                                 # my_tinyUSB
                        )
 
 

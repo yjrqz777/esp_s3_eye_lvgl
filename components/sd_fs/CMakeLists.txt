@@ -1,5 +1,5 @@
 idf_component_register(
-    SRCS "sd_fat_fs.c" "MyTinyUSB_test.c"
+    SRCS "sd_fat_fs.c"
     INCLUDE_DIRS "include" 
     # INCLUDE_DIRS "../lvgl/src/extra/libs/gif"
     REQUIRES driver sdmmc fatfs 

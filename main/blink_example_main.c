@@ -43,12 +43,11 @@
 #include "ui_helpers.h"
 
 
-#include "MyTinyUSB.h"
 void lv_tick_task(void *arg)
 {
     lv_tick_inc(1);
 }
- 
+
 // static int sys_stack_cmd(int argc, char **argv)//获取任务栈
 // {
 //     char *CPU_RunInfo;
@@ -120,22 +119,6 @@ void app_main(void)
     lv_init();
     // lvgl_driver_init(); 
     lv_port_disp_init();
-    // lv_color_t *buf1 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_DMA);
-    // assert(buf1 != NULL);
-    // static lv_color_t *buf2 = NULL;
-    // fat_fs();
-    // static lv_disp_draw_buf_t disp_buf;
- 
-    // uint32_t size_in_px = DISP_BUF_SIZE;
-    // lv_disp_draw_buf_init(&disp_buf, buf1, buf2, size_in_px);
-    // lv_disp_drv_t disp_drv;
-    // lv_disp_drv_init(&disp_drv);
-    // disp_drv.hor_res = LV_HOR_RES_MAX;
-    // disp_drv.ver_res = LV_VER_RES_MAX;
-    // disp_drv.flush_cb = disp_driver_flush;
-    // disp_drv.draw_buf = &disp_buf;
-    // lv_disp_drv_register(&disp_drv);
-
 
 
     const esp_timer_create_args_t periodic_timer_args = {
@@ -175,7 +158,7 @@ void app_main(void)
     // test_main();
 
     ui_init();
-
+    fat_fs();
 
     // setup_ui(&guider_ui);
     // events_init(&guider_ui);

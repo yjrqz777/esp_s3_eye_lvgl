@@ -89,6 +89,6 @@ void ui_Screen1_screen_init(void)
     lv_img_set_angle(ui_Image3, 7);
     lv_img_set_zoom(ui_Image3, 10);
 
-    lv_obj_add_event_cb(ui_wifibtn, ui_event_wifibtn, LV_EVENT_ALL, NULL);
+    // lv_obj_add_event_cb(ui_wifibtn, ui_event_wifibtn, LV_EVENT_ALL, NULL);
 
 }

@@ -16,7 +16,7 @@
 void fat_fs(void);
 
 // sdmmc_card_t* return_sdmmc_card_t (const sdmmc_card_t* card);
-void MyTinyUSB_TEST(sdmmc_card_t *card);
+// void MyTinyUSB_TEST(sdmmc_card_t *card);
 
 
 

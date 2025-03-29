@@ -141,7 +141,7 @@ void lv_port_indev_init(void)
     group2 = lv_group_create();
     group3 = lv_group_create();
     group4 = lv_group_create();
-	// lv_group_set_default(group);
+	lv_group_set_default(group2);
     
     //运行demo
     ui_init();
@@ -166,7 +166,7 @@ void lv_port_indev_init(void)
 // lv_obj_t *ui_TextArea3;
 
 
-
+    
     lv_group_add_obj(group1,ui_wifibtn);
     lv_group_add_obj(group1,ui_Roller1);
     lv_indev_set_group(indev_keypad, group1);
@@ -183,17 +183,18 @@ void lv_port_indev_init(void)
     lv_group_add_obj(group2,ui_conbtn);
 
     lv_group_add_obj(group2,ui_Dropdown1);
-
+    lv_indev_set_group(indev_keypad, group2);
+    lv_group_focus_obj(ui_backbtn2);
     // lv_group_add_obj(group2,ui_Switch2);
     // lv_group_add_obj(group2,ui_TextArea2);
 
-    lv_group_add_obj(group3,ui_backbtn3);
-    lv_group_add_obj(group3,ui_nextbtn3);
-    lv_group_add_obj(group3,ui_scanbtn2);
-    lv_group_add_obj(group3,ui_Switch3);
-    lv_group_add_obj(group3,ui_TextArea3);
+    // lv_group_add_obj(group3,ui_backbtn3);
+    // lv_group_add_obj(group3,ui_nextbtn3);
+    // lv_group_add_obj(group3,ui_scanbtn2);
+    // lv_group_add_obj(group3,ui_Switch3);
     // lv_group_add_obj(group3,ui_TextArea3);
-    lv_group_add_obj(group3,ui_Keyboard1);
+    // // lv_group_add_obj(group3,ui_TextArea3);
+    // lv_group_add_obj(group3,ui_Keyboard1);
 
     // lv_group_add_obj(group4,ui_backbtn4);
     // lv_group_add_obj(group4,ui_nextbtn4);

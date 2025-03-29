@@ -110,7 +110,7 @@ void fat_fs(void)
     // Card has been initialized, print its properties
     sdmmc_card_print_info(stdout, card);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
-    MyTinyUSB_TEST(card);
+    // MyTinyUSB_TEST(card);
     // Use POSIX and C standard library functions to work with files:
 
     // First create a file.
@@ -173,5 +173,5 @@ void fat_fs(void)
 
     // All done, unmount partition and disable SDMMC peripheral
     // esp_vfs_fat_sdcard_unmount(mount_point, card);
-    ESP_LOGI(TAG, "Card unmounted");
+    // ESP_LOGI(TAG, "Card unmounted");
 }
