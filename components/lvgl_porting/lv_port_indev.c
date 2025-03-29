@@ -142,7 +142,7 @@ void lv_port_indev_init(void)
     group2 = lv_group_create();
     group3 = lv_group_create();
     group4 = lv_group_create();
-    
+    group5 = lv_group_create();
 	// lv_group_set_default(group1);
     lv_indev_set_group(indev_keypad, group1);
     

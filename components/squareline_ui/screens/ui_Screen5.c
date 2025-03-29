@@ -67,7 +67,9 @@ void ui_Screen5_screen_init(void)
     ui_Container6 = lv_obj_create(ui_Screen5);
     lv_obj_remove_style_all(ui_Container6);
     lv_obj_set_width(ui_Container6, 240);
-    lv_obj_set_height(ui_Container6, 240);
+    lv_obj_set_height(ui_Container6, 134);
+    lv_obj_set_x(ui_Container6, 0);
+    lv_obj_set_y(ui_Container6, 50);
     lv_obj_set_align(ui_Container6, LV_ALIGN_CENTER);
     lv_obj_clear_flag(ui_Container6, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 

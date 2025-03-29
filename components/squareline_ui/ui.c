@@ -133,7 +133,7 @@ void ui_event_wifibtn(lv_event_t * e)
 void ui_event_backbtn2(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
+
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 30, 0, &ui_Screen1_screen_init);
     lv_indev_set_group(indev_keypad, group1);
@@ -144,7 +144,7 @@ void ui_event_backbtn2(lv_event_t * e)
 void ui_event_nextbtn2(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
+
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 30, 0, &ui_Screen3_screen_init);
     lv_indev_set_group(indev_keypad, group3);
@@ -217,7 +217,7 @@ void ui_event_backbtn4(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_Screen3, LV_SCR_LOAD_ANIM_FADE_ON, 30, 0, &ui_Screen3_screen_init);
     lv_indev_set_group(indev_keypad, group3);
-    lv_group_focus_obj(ui_backbtn4);
+    lv_group_focus_obj(ui_backbtn3);
     }
 }
 
