@@ -72,6 +72,7 @@ lv_group_t* group1;
 lv_group_t* group2;
 lv_group_t* group3;
 lv_group_t* group4;
+lv_group_t* group5;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
@@ -198,6 +199,11 @@ void lv_port_indev_init(void)
 
     lv_group_add_obj(group4,ui_backbtn4);
     lv_group_add_obj(group4,ui_nextbtn4);
+
+    lv_group_add_obj(group5,ui_backbtn5);
+    lv_group_add_obj(group5,ui_nextbtn5);
+
+
     // lv_group_add_obj(group4,list);
     // lv_group_add_obj(group3,ui_scanbtn2);
 

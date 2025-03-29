@@ -29,6 +29,7 @@ extern lv_group_t* group1;
 extern lv_group_t* group2;
 extern lv_group_t* group3;
 extern lv_group_t* group4;
+extern lv_group_t* group5;
 // lv_indev_t * indev_encoder;
 // lv_indev_t * indev_button;
 /**********************
