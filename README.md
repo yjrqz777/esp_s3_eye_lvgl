@@ -35,14 +35,14 @@ https://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp
 esptool.py --port COM3 erase_flash
 
 
-2024年7月21日16:25:02 用巴发云测试OTA
+2024年7月21日16:25:02 ~~用巴发云测试OTA~~
 
 
 2024年7月24日23:35:32 IDF使用5.1.2
 
 2024年7月27日12:55:22 squareline 项目丢失，重新构建并上传
 
-2024年7月29日23:40:31 尝试使用tinyUSB使用MSC 未成功运行失败
+2024年7月29日23:40:31 ~~尝试使用tinyUSB使用MSC 未成功运行失败~~
 
 
 2025年3月29日17:01:01 del tinyUSB 移植 rlottie 在第四页
