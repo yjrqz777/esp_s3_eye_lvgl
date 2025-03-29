@@ -5,7 +5,7 @@
 #define TEST_UI_H
 
 #include "lvgl.h"
-void test_main(void);
+void test_main(lv_obj_t * parent);
 
 void test_picture(lv_obj_t * ui_Screen4);
 

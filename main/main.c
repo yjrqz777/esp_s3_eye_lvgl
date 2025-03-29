@@ -85,11 +85,14 @@ void app_main(void)
     /*注释 key*/
     main_cpp();
     
+    /* test ui */
+    // test_main();
+
     /*squareline ui init  */
     ui_init();
-    
+
     /*LVGL控制设备初始化*/
-    lv_port_indev_init();  
+    lv_port_indev_init();
 
     /*qma7981 test*/
     // xTaskCreate(qma7981_main, "qma7981_main", 4096, NULL, 2, NULL);
