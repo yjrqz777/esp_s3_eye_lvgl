@@ -203,7 +203,6 @@ void test_picture(lv_obj_t * ui_Screen4)
     /* Get file name in storage */
     struct dirent *p_dirent = NULL;
     DIR *p_dir_stream = opendir("/sdcard");
-
     /* Scan files in storage */
     while (true) {
         p_dirent = readdir(p_dir_stream);

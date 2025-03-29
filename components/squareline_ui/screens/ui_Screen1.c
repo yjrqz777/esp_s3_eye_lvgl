@@ -77,16 +77,24 @@ void ui_Screen1_screen_init(void)
     lv_obj_clear_flag(ui_Container3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_Image3 = lv_img_create(ui_Container3);
-    lv_obj_set_width(ui_Image3, lv_pct(102));
-    lv_obj_set_height(ui_Image3, lv_pct(100));
-    lv_obj_set_x(ui_Image3, 0);
-    lv_obj_set_y(ui_Image3, 3);
+    // lv_obj_set_width(ui_Image3, 100);
+    // lv_obj_set_height(ui_Image3, 100);
+    // lv_obj_set_x(ui_Image3, 0);
+    // lv_obj_set_y(ui_Image3, 0);
     lv_obj_set_align(ui_Image3, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image3, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Image3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_img_set_angle(ui_Image3, 7);
-    lv_img_set_zoom(ui_Image3, 10);
+    lv_img_set_zoom(ui_Image3, 128);
+
+
+
 
     lv_obj_add_event_cb(ui_wifibtn, ui_event_wifibtn, LV_EVENT_ALL, NULL);
+
+    // lv_obj_t *img = lv_img_create(ui_Screen1);
+    // lv_obj_set_width(img, 100);
+    // lv_obj_set_height(img, 100);
+    lv_img_set_src(ui_Image3, "/sdcard/emo2.png");
 
 }

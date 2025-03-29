@@ -82,15 +82,18 @@ void ui_Screen2_screen_init(void)
 
 
     ui_wifiname = lv_roller_create(ui_Screen2);
-    lv_roller_set_options(ui_wifiname, "Option 1\nOption 2\nOption 3", LV_ROLLER_MODE_NORMAL);
+    lv_roller_set_options(ui_wifiname, "天翼 1\nOption 2\nOption 3", LV_ROLLER_MODE_NORMAL);
     lv_obj_set_width(ui_wifiname, 240);
     lv_obj_set_height(ui_wifiname, 78);
     lv_obj_set_x(ui_wifiname, 0);
     lv_obj_set_y(ui_wifiname, -33);
     lv_obj_set_align(ui_wifiname, LV_ALIGN_CENTER);
+    lv_obj_set_style_text_color(ui_Label3, lv_color_hex(0x050000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Label3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label3, &ui_font_songtibpp4, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Dropdown1 = lv_dropdown_create(ui_Screen2);
-    lv_dropdown_set_options(ui_Dropdown1, "12345678\n00000000");
+    lv_dropdown_set_options(ui_Dropdown1, "12345678\n00000000\66661111");
     lv_obj_set_width(ui_Dropdown1, 150);
     lv_obj_set_height(ui_Dropdown1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Dropdown1, -38);

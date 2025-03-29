@@ -95,6 +95,9 @@ void show_scan()
     }
     printf("---1%s\n", wifi_ssid);
     lv_roller_set_options(ui_wifiname, wifi_ssid, LV_ROLLER_MODE_INFINITE );
+    lv_obj_set_style_text_color(ui_Label3, lv_color_hex(0x050000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Label3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label3, &ui_font_songtibpp4, LV_PART_MAIN | LV_STATE_DEFAULT);
     // wifi_ssid[0] = "\0";
     // memset(wifi_ssid,0,sizeof(wifi_ssid));
     printf("---2%s\n--3%d\n", wifi_ssid,strlen(wifi_ssid));

@@ -12,6 +12,7 @@
 
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
+#include "lv_port_fs.h"
 
 #include "test_ui.h"
 
@@ -62,9 +63,13 @@ void LVGL()
 {
     /*LVGL 初始化*/
     lv_init();
+
     /*LVGL 显示驱动初始化*/
     lv_port_disp_init();
 
+    /*LVGL 文件系统初始化*/
+    lv_port_fs_init();
+    // fat_fs();
     /* test ui */
     // test_main();
 
@@ -73,6 +78,13 @@ void LVGL()
 
     /*LVGL控制设备初始化*/
     lv_port_indev_init();
+
+    // lv_obj_t *img = lv_img_create(lv_scr_act());
+    // lv_img_set_src(img, "A:sdcard/emo2.png");
+    // lv_obj_set_style_img_opa(img, LV_OPA_100, 0);
+
+    // /* Align object */
+    // lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
     /*sd_fat_fs test*/
 //     fat_fs();
 
