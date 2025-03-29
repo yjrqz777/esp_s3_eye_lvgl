@@ -5,6 +5,7 @@
 # lvgl:8.3.10
 # esp_idf:5.04
 # st7789 240x240
+# rlottie master
 
 
 Online Image Converter : https://lvgl.io/tools/imageconverter
