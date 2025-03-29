@@ -6,3 +6,4 @@ dependencies:
   # espressif/esp_tinyusb: ^1.2
   # idf: "^5.0"
   cherry-embedded/cherryusb: ^1.4.2
+  espressif/button: ^4.1.1

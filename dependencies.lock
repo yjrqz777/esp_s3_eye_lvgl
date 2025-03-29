@@ -13,12 +13,37 @@ dependencies:
     - esp32s3
     - esp32p4
     version: 1.4.2
+  espressif/button:
+    component_hash: ea6e01641b8dcf196ecc48be2961b1f20af397b61a752ab041a19282e41bafcb
+    dependencies:
+    - name: espressif/cmake_utilities
+      registry_url: https://components.espressif.com
+      require: private
+      version: '*'
+    - name: idf
+      require: private
+      version: '>=4.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 4.1.1
+  espressif/cmake_utilities:
+    component_hash: 05165f30922b422b4b90c08845e6d449329b97370fbd06309803d8cb539d79e3
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.1'
+    source:
+      registry_url: https://components.espressif.com
+      type: service
+    version: 1.1.1
   idf:
     source:
       type: idf
     version: 5.1.5
 direct_dependencies:
 - cherry-embedded/cherryusb
-manifest_hash: 7cddbd9465415c9e0ed87f02e37d08e1b9025abf9be37f691ee581204feab5d3
+- espressif/button
+manifest_hash: 28f9db495049a69d632ab63947313996dc53855d5eb2a4968d3b53923ef31561
 target: esp32s3
 version: 2.0.0
