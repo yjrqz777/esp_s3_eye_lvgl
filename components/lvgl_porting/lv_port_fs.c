@@ -4,13 +4,13 @@
  */
 
 /*Copy this file as "lv_port_fs.c" and set this value to "1" to enable content*/
-#if 0
+#if 1
 
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_port_fs_template.h"
-#include "../../lvgl.h"
+#include "lv_port_fs.h"
+// #include "../../lvgl.h"
 
 /*********************
  *      DEFINES
@@ -109,18 +109,18 @@ static void * fs_open(lv_fs_drv_t * drv, const char * path, lv_fs_mode_t mode)
 
     void * f = NULL;
 
-    if(mode == LV_FS_MODE_WR) {
-        /*Open a file for write*/
-        f = ...         /*Add your code here*/
-    }
-    else if(mode == LV_FS_MODE_RD) {
-        /*Open a file for read*/
-        f = ...         /*Add your code here*/
-    }
-    else if(mode == (LV_FS_MODE_WR | LV_FS_MODE_RD)) {
-        /*Open a file for read and write*/
-        f = ...         /*Add your code here*/
-    }
+    // if(mode == LV_FS_MODE_WR) {
+    //     /*Open a file for write*/
+    //     f = ...         /*Add your code here*/
+    // }
+    // else if(mode == LV_FS_MODE_RD) {
+    //     /*Open a file for read*/
+    //     f = ...         /*Add your code here*/
+    // }
+    // else if(mode == (LV_FS_MODE_WR | LV_FS_MODE_RD)) {
+    //     /*Open a file for read and write*/
+    //     f = ...         /*Add your code here*/
+    // }
 
     return f;
 }
@@ -218,7 +218,7 @@ static void * fs_dir_open(lv_fs_drv_t * drv, const char * path)
 {
     void * dir = NULL;
     /*Add your code here*/
-    dir = ...           /*Add your code here*/
+    // dir = ...           /*Add your code here*/
           return dir;
 }
 

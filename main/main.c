@@ -50,6 +50,45 @@ void lv_tick_task(void *arg)
 }
 
 
+
+/***************************************************************************************************
+ * 功能描述: 
+ * 输入参数: 
+ * 输出参数: 
+ * 返 回 值: 
+ * 其它说明: 
+***************************************************************************************************/
+void LVGL()
+{
+    /*LVGL 初始化*/
+    lv_init();
+    /*LVGL 显示驱动初始化*/
+    lv_port_disp_init();
+
+    /* test ui */
+    // test_main();
+
+    /*squareline ui init  */
+    ui_init();
+
+    /*LVGL控制设备初始化*/
+    lv_port_indev_init();
+    /*sd_fat_fs test*/
+//     fat_fs();
+
+    while (true)
+    {
+        vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+    
+
+}
+
+
+
+
+
+
 /***************************************************************************************************
  * 功能描述: 
  * 输入参数: 
@@ -59,10 +98,7 @@ void lv_tick_task(void *arg)
 ***************************************************************************************************/
 void app_main(void)
 {
-    /*LVGL 初始化*/
-    lv_init();
-    /*LVGL 显示驱动初始化*/
-    lv_port_disp_init();
+
 
     /* lv_tick_task */
     const esp_timer_create_args_t periodic_timer_args = {
@@ -85,22 +121,13 @@ void app_main(void)
     /*注释 key*/
     main_cpp();
     
-    /* test ui */
-    // test_main();
 
-    /*squareline ui init  */
-    ui_init();
-
-    /*LVGL控制设备初始化*/
-    lv_port_indev_init();
 
     /*qma7981 test*/
     // xTaskCreate(qma7981_main, "qma7981_main", 4096, NULL, 2, NULL);
     // xTaskCreate(MyTinyUSB_Main, "MyTinyUSB_Main", 4096, NULL, 2, NULL);
-    
+    xTaskCreate(LVGL, "LVGL", 4096*2, NULL, 4, NULL);
 
-    /*sd_fat_fs test*/
-    fat_fs();
 
     /* while 1*/
     while (true)
