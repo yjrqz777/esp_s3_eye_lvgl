@@ -126,7 +126,7 @@ void lv_port_indev_init(void)
     /*------------------
      * Keypad
      * -----------------*/
-
+    
     /*Initialize your keypad or keyboard if you have*/
     keypad_init();
 
@@ -141,10 +141,12 @@ void lv_port_indev_init(void)
     group2 = lv_group_create();
     group3 = lv_group_create();
     group4 = lv_group_create();
-	lv_group_set_default(group2);
+    
+	// lv_group_set_default(group1);
+    lv_indev_set_group(indev_keypad, group1);
     
     //运行demo
-    ui_init();
+    
 
 
 
@@ -169,7 +171,8 @@ void lv_port_indev_init(void)
     
     lv_group_add_obj(group1,ui_wifibtn);
     lv_group_add_obj(group1,ui_Roller1);
-    lv_indev_set_group(indev_keypad, group1);
+
+    // lv_indev_set_group(indev_keypad, group1);
     lv_group_focus_obj(ui_wifibtn);
 
 
@@ -183,21 +186,18 @@ void lv_port_indev_init(void)
     lv_group_add_obj(group2,ui_conbtn);
 
     lv_group_add_obj(group2,ui_Dropdown1);
-    lv_indev_set_group(indev_keypad, group2);
-    lv_group_focus_obj(ui_backbtn2);
-    // lv_group_add_obj(group2,ui_Switch2);
+    lv_group_add_obj(group2,ui_Switch2);
     // lv_group_add_obj(group2,ui_TextArea2);
 
-    // lv_group_add_obj(group3,ui_backbtn3);
-    // lv_group_add_obj(group3,ui_nextbtn3);
-    // lv_group_add_obj(group3,ui_scanbtn2);
-    // lv_group_add_obj(group3,ui_Switch3);
-    // lv_group_add_obj(group3,ui_TextArea3);
-    // // lv_group_add_obj(group3,ui_TextArea3);
-    // lv_group_add_obj(group3,ui_Keyboard1);
+    lv_group_add_obj(group3,ui_backbtn3);
+    lv_group_add_obj(group3,ui_nextbtn3);
+    lv_group_add_obj(group3,ui_scanbtn2);
+    lv_group_add_obj(group3,ui_Switch3);
+    lv_group_add_obj(group3,ui_TextArea3);
+    lv_group_add_obj(group3,ui_Keyboard1);
 
-    // lv_group_add_obj(group4,ui_backbtn4);
-    // lv_group_add_obj(group4,ui_nextbtn4);
+    lv_group_add_obj(group4,ui_backbtn4);
+    lv_group_add_obj(group4,ui_nextbtn4);
     // lv_group_add_obj(group4,list);
     // lv_group_add_obj(group3,ui_scanbtn2);
 
@@ -361,19 +361,33 @@ static void keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
     if(act_key != 0) {
         data->state = LV_INDEV_STATE_PR;
 
+
+    // LV_KEY_UP        = 17,  /*0x11*/
+    // LV_KEY_DOWN      = 18,  /*0x12*/
+    // LV_KEY_RIGHT     = 19,  /*0x13*/
+    // LV_KEY_LEFT      = 20,  /*0x14*/
+    // LV_KEY_ESC       = 27,  /*0x1B*/
+    // LV_KEY_DEL       = 127, /*0x7F*/
+    // LV_KEY_BACKSPACE = 8,   /*0x08*/
+    // LV_KEY_ENTER     = 10,  /*0x0A, '\n'*/
+    // LV_KEY_NEXT      = 9,   /*0x09, '\t'*/
+    // LV_KEY_PREV      = 11,  /*0x0B, '*/
+    // LV_KEY_HOME      = 2,   /*0x02, STX*/
+    // LV_KEY_END       = 3,   /*0x03, ETX*/
+
         /*Translate the keys to LVGL control characters according to your key definitions*/
         switch(act_key) {
             case 1:
-                act_key = LV_KEY_NEXT;
+                act_key = LV_KEY_RIGHT;
                 break;
-            case 2:
+            // case 2:
+            //     act_key = LV_KEY_PREV;
+            //     break;
+            case 3:
                 act_key = LV_KEY_PREV;
                 break;
-            case 3:
-                act_key = LV_KEY_LEFT;
-                break;
             case 4:
-                act_key = LV_KEY_RIGHT;
+                act_key = LV_KEY_NEXT;
                 break;
             case 5:
                 act_key = LV_KEY_ENTER;
@@ -403,17 +417,17 @@ static uint32_t keypad_get_key(void)
     if (p> 300 && p < 500)
     {
         button_flag = 1;
-        ESP_LOGI("keypad_get_key = LV_KEY_NEXT","p = %d\n",button_flag);
+        ESP_LOGI("keypad_get_key = LV_KEY_RIGHT","p = %d\n",button_flag);
     }
     else if (p > 850 && p < 1050)
     {
         button_flag = 4;
-        ESP_LOGI("keypad_get_key = LV_KEY_RIGHT","p = %d\n",button_flag);
+        ESP_LOGI("keypad_get_key = LV_KEY_NEXT","p = %d\n",button_flag);
     }
     else if (p > 2250 && p < 2450)
     {
         button_flag = 3;
-        ESP_LOGI("keypad_get_key = LV_KEY_LEFT","p = %d\n",button_flag);
+        ESP_LOGI("keypad_get_key = LV_KEY_PREV","p = %d\n",button_flag);
     }
     else if (p > 2800 && p < 3000)
     {

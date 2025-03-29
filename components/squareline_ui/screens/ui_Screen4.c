@@ -59,6 +59,6 @@ void ui_Screen4_screen_init(void)
     lv_obj_add_event_cb(ui_backbtn4, ui_event_backbtn4, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_nextbtn4, ui_event_nextbtn4, LV_EVENT_ALL, NULL);
 
-    test_picture(ui_Screen4);
+    // test_picture(ui_Screen4);
 
 }
