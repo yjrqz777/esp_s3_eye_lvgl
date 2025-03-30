@@ -3,17 +3,5 @@
 cmake_minimum_required(VERSION 3.16)
 
 
-
-
-set(LOTTIE_MODULE OFF)
-set(LOTTIE_THREAD OFF)
-set(BUILD_SHARED_LIBS OFF)
-
-
-
-
-
-
-
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(esp_s3_eye_lvgl)

@@ -1,7 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
-
-# Set CMP0077 policy
-cmake_policy(SET CMP0077 NEW)
+cmake_minimum_required( VERSION 3.3 )
 
 #declare project
 project( rlottie VERSION 0.2 LANGUAGES C CXX ASM)
@@ -25,7 +22,8 @@ set(player_version_minor 2)
 set(player_version ${player_version_major}.${player_version_minor})
 set_target_properties(rlottie PROPERTIES
                         VERSION    ${player_version}
-                        SOVERSION  ${player_version_major})
+                        SOVERSION  ${player_version_major}
+                      )
 
 #declare alias so that library can be used inside the build tree, e.g. when testing
 add_library(rlottie::rlottie ALIAS rlottie)
@@ -36,6 +34,12 @@ option(LOTTIE_CACHE "Enable LOTTIE CACHE SUPPORT" ON)
 option(LOTTIE_TEST "Build LOTTIE AUTOTESTS" OFF)
 option(LOTTIE_CCACHE "Enable LOTTIE ccache SUPPORT" OFF)
 option(LOTTIE_ASAN "Compile with asan" OFF)
+
+
+if(LOTTIE_MODULE)
+    message(FATAL_ERROR "-- LOTTIE_MODULE ${LOTTIE_MODULE} --please set LOTTIE_MODULE OFF !")
+endif()
+
 
 set(LOTTIE_MODULE_PATH "${CMAKE_SHARED_LIBRARY_PREFIX}rlottie-image-loader${CMAKE_SHARED_LIBRARY_SUFFIX}"
     CACHE STRING "Absolute or relative path to dynamic loader plugin.")
@@ -136,7 +140,7 @@ if (LOTTIE_ASAN)
 endif()
 
 if (NOT LIB_INSTALL_DIR)
-    set (LIB_INSTALL_DIR "/usr/local/lib")
+    set (LIB_INSTALL_DIR "/usr/lib")
 endif (NOT LIB_INSTALL_DIR)
 
 #declare source and include files

@@ -3,16 +3,14 @@
 #include "vdebug.h"
 #include <cstring>
 
-
 #ifdef _WIN32
 #include <windows.h>
 #elif !defined(ESP_PLATFORM)
 #include <dlfcn.h>
 #endif
 
-using lottie_image_load_f =
-        unsigned char *
-        (*)(const char *filename, int *x, int *y, int *comp, int req_comp);
+using lottie_image_load_f = unsigned char *(*)(const char *filename, int *x,
+                                               int *y, int *comp, int req_comp);
 using lottie_image_load_data_f = unsigned char *(*)(const char *data, int len,
                                                     int *x, int *y, int *comp,
                                                     int req_comp);

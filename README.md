@@ -47,3 +47,35 @@ esptool.py --port COM3 erase_flash
 
 
 2025年3月29日17:01:01 del tinyUSB 移植 rlottie 在第四页 lvgl fs ok
+```
+rlottie移植注意事项 
+1，修改rlottie cmake 注意 ESP_PLATFORM
+2，增加父cmake 
+
+# Set CMP0077 policy 必须
+cmake_policy(SET CMP0077 NEW)
+# 可通过环境变量强制覆盖子模块的配置
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+
+# 必须关闭
+set(LOTTIE_MODULE OFF)
+set(LOTTIE_THREAD OFF)
+set(BUILD_SHARED_LIBS OFF)
+option(BUILD_TESTING OFF)
+
+3，components/esp_rlottie/rlottie/src/vector/vimageloader.cpp
+
+最上面改为
+#ifdef _WIN32
+#include <windows.h>
+#elif !defined(ESP_PLATFORM)
+#include <dlfcn.h>
+#endif
+
+4，components/esp_rlottie/rlottie/src/vector/vraster.cpp
+
+SW_FT_Stroker_GetCounts(stroker, &points, &contors);
+强转
+SW_FT_Stroker_GetCounts(stroker, (SW_FT_UInt*)&points, (SW_FT_UInt*)&contors);
+
+```
