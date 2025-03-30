@@ -979,7 +979,7 @@
                   {
                     "nid": 1136407960,
                     "strtype": "IMAGE/Asset",
-                    "strval": "",
+                    "strval": "-",
                     "InheritedType": 5
                   },
                   {
@@ -1000,7 +1000,7 @@
                   {
                     "nid": 1612401853,
                     "strtype": "IMAGE/Scale",
-                    "integer": 256,
+                    "integer": 128,
                     "InheritedType": 6
                   },
                   {
@@ -2594,7 +2594,7 @@
               {
                 "nid": 820375588,
                 "strtype": "ROLLER/Options",
-                "strval": "天翼 1\\nOption 2\\nOption 3",
+                "strval": "等待扫描\\nOption 2\\nOption 3",
                 "InheritedType": 10
               },
               {
@@ -2741,7 +2741,7 @@
               {
                 "nid": -921908912,
                 "strtype": "DROPDOWN/Options",
-                "strval": "12345678\\n00000000",
+                "strval": "12345678\\n00000000\\n66661111",
                 "InheritedType": 10
               },
               {
@@ -6883,7 +6883,7 @@
     "uiExportFolderPath": "D:\\document\\esp\\SquareLine_project\\components",
     "projectExportFolderPath": "D:\\document\\esp\\SquareLine_project",
     "custom_variable_prefix": "uic",
-    "backup_cnt": 52,
+    "backup_cnt": 55,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": "C_FILE",

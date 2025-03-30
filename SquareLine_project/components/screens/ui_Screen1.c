@@ -83,6 +83,7 @@ void ui_Screen1_screen_init(void)
     lv_obj_add_flag(ui_Image3, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Image3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_img_set_angle(ui_Image3, 7);
+    lv_img_set_zoom(ui_Image3, 128);
 
     lv_obj_add_event_cb(ui_wifibtn, ui_event_wifibtn, LV_EVENT_ALL, NULL);
 

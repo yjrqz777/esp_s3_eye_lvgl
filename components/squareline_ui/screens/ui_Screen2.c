@@ -82,7 +82,7 @@ void ui_Screen2_screen_init(void)
 
 
     ui_wifiname = lv_roller_create(ui_Screen2);
-    lv_roller_set_options(ui_wifiname, "Option 1\nOption 2\nOption 3", LV_ROLLER_MODE_NORMAL);
+    lv_roller_set_options(ui_wifiname, "等待扫描\nOption 2\nOption 3", LV_ROLLER_MODE_NORMAL);
     lv_obj_set_width(ui_wifiname, 240);
     lv_obj_set_height(ui_wifiname, 78);
     lv_obj_set_x(ui_wifiname, 0);

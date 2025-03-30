@@ -4,9 +4,6 @@
 // Project name: SquareLine_Project
 
 #include "../ui.h"
-#include "lv_port_indev.h"
-
-lv_obj_t *btn;
 
 void ui_Screen1_screen_init(void)
 {

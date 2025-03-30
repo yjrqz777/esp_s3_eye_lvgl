@@ -82,7 +82,7 @@ void ui_Screen2_screen_init(void)
 
 
     ui_wifiname = lv_roller_create(ui_Screen2);
-    lv_roller_set_options(ui_wifiname, "天翼 1\nOption 2\nOption 3", LV_ROLLER_MODE_NORMAL);
+    lv_roller_set_options(ui_wifiname, "等待扫描\nOption 2\nOption 3", LV_ROLLER_MODE_NORMAL);
     lv_obj_set_width(ui_wifiname, 240);
     lv_obj_set_height(ui_wifiname, 78);
     lv_obj_set_x(ui_wifiname, 0);
@@ -91,7 +91,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_style_text_font(ui_wifiname, &ui_font_songtibpp4, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Dropdown1 = lv_dropdown_create(ui_Screen2);
-    lv_dropdown_set_options(ui_Dropdown1, "12345678\n00000000");
+    lv_dropdown_set_options(ui_Dropdown1, "12345678\n00000000\n66661111");
     lv_obj_set_width(ui_Dropdown1, 150);
     lv_obj_set_height(ui_Dropdown1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Dropdown1, -38);
