@@ -35,7 +35,7 @@ extern lv_group_t* group5;
 /**********************
  *      TYPEDEFS
  **********************/
-
+extern void setGroup();
 /**********************
  * GLOBAL PROTOTYPES
  **********************/

@@ -4,6 +4,9 @@
 // Project name: SquareLine_Project
 
 #include "../ui.h"
+#include "lv_port_indev.h"
+
+lv_obj_t *btn;
 
 void ui_Screen1_screen_init(void)
 {
@@ -87,9 +90,6 @@ void ui_Screen1_screen_init(void)
 
     lv_obj_add_event_cb(ui_wifibtn, ui_event_wifibtn, LV_EVENT_ALL, NULL);
 
-    // lv_obj_t *img = lv_img_create(ui_Screen1);
-    // lv_obj_set_width(img, 100);
-    // lv_obj_set_height(img, 100);
-    lv_img_set_src(ui_Image3, "/sdcard/emo2.png");
+    lv_img_set_src(ui_Image3, &ui_img_333_png);
 
 }

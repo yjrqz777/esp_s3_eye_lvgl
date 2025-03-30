@@ -60,8 +60,14 @@ void lv_port_disp_init(void)
 
     /* Example for 2) */
     static lv_disp_draw_buf_t draw_buf_dsc_2;
-    static lv_color_t buf_2_1[DISP_BUF_SIZE];                        /*A buffer for 10 rows*/
-    static lv_color_t buf_2_2[DISP_BUF_SIZE];                        /*An other buffer for 10 rows*/
+    // static lv_color_t buf_2_1[DISP_BUF_SIZE];                        /*A buffer for 10 rows*/
+    // static lv_color_t buf_2_2[DISP_BUF_SIZE];                        /*An other buffer for 10 rows*/
+
+lv_color_t* buf_2_1 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
+lv_color_t* buf_2_2 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
+    memset(buf_2_1, 0, DISP_BUF_SIZE * sizeof(lv_color_t));
+    memset(buf_2_2, 0, DISP_BUF_SIZE * sizeof(lv_color_t));
+
 
     lv_disp_draw_buf_init(&draw_buf_dsc_2, buf_2_1, buf_2_2, DISP_BUF_SIZE);   /*Initialize the display buffer*/
 
@@ -73,22 +79,55 @@ void lv_port_disp_init(void)
     disp_drv.draw_buf = &draw_buf_dsc_2;
     lv_disp_drv_register(&disp_drv);
 
-    // lv_color_t *buf1 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_DMA);
-    // assert(buf1 != NULL);
-    // static lv_color_t *buf2 = NULL;
- 
-    // static lv_disp_draw_buf_t disp_buf;
- 
-    // uint32_t size_in_px = DISP_BUF_SIZE;
-    // lv_disp_draw_buf_init(&disp_buf, buf1, buf2, size_in_px);
-    // lv_disp_drv_t disp_drv;
-    // lv_disp_drv_init(&disp_drv);
-    // disp_drv.hor_res = LV_HOR_RES_MAX;
-    // disp_drv.ver_res = LV_VER_RES_MAX;
-    // disp_drv.flush_cb = disp_driver_flush;
-    // disp_drv.draw_buf = &disp_buf;
-    // lv_disp_drv_register(&disp_drv);
+    /* Example for 3) also set disp_drv.full_refresh = 1 below*/
+//     static lv_disp_draw_buf_t draw_buf_dsc_3;
+//     // static lv_color_t buf_3_1[MY_DISP_HOR_RES * MY_DISP_VER_RES];            /*A screen sized buffer*/
+//     // static lv_color_t buf_3_2[MY_DISP_HOR_RES * MY_DISP_VER_RES];            /*Another screen sized buffer*/
 
+// lv_color_t* buf_3_1 = heap_caps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), 
+//                                      MALLOC_CAP_SPIRAM);
+// lv_color_t* buf_3_2 = heap_caps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), 
+//                                      MALLOC_CAP_SPIRAM);
+// // 强制16字节对齐分配
+// // lv_color_t* buf_3_1 = (lv_color_t*)heap_caps_aligned_alloc(16, 
+// //     MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), 
+// //     MALLOC_CAP_SPIRAM);
+// // lv_color_t* buf_3_2 = (lv_color_t*)heap_caps_aligned_alloc(16, 
+// //     MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), 
+// //     MALLOC_CAP_SPIRAM);
+
+//     // memset(buf_3_1, 0, MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t));
+//     // memset(buf_3_2, 0, MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t));
+
+//     lv_disp_draw_buf_init(&draw_buf_dsc_3, buf_3_1, buf_3_2,
+//                           MY_DISP_VER_RES * LV_VER_RES_MAX);   /*Initialize the display buffer*/
+
+
+//     static lv_disp_drv_t disp_drv;                         /*Descriptor of a display driver*/
+//     lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
+
+//     /*Set up the functions to access to your display*/
+
+//     /*Set the resolution of the display*/
+//     disp_drv.hor_res = MY_DISP_HOR_RES;
+//     disp_drv.ver_res = MY_DISP_VER_RES;
+
+//     /*Used to copy the buffer's content to the display*/
+//     disp_drv.flush_cb = disp_driver_flush;
+
+//     /*Set a display buffer*/
+//     disp_drv.draw_buf = &draw_buf_dsc_3;
+
+//     /*Required for Example 3)*/
+//     disp_drv.full_refresh = 1;
+
+//     /* Fill a memory array with a color if you have GPU.
+//      * Note that, in lv_conf.h you can enable GPUs that has built-in support in LVGL.
+//      * But if you have a different GPU you can use with this callback.*/
+//     //disp_drv.gpu_fill_cb = gpu_fill;
+
+//     /*Finally register the driver*/
+//     lv_disp_drv_register(&disp_drv);
 
 }
 

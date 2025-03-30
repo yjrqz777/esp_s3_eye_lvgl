@@ -57,5 +57,4 @@ void ui_Screen5_screen_init(void)
 
     lv_obj_add_event_cb(ui_backbtn5, ui_event_backbtn5, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_nextbtn5, ui_event_nextbtn5, LV_EVENT_ALL, NULL);
-
 }

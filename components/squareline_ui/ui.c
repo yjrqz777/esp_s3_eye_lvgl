@@ -9,6 +9,8 @@
 ///////////////////// VARIABLES ////////////////////
 #include "lv_port_indev.h"
 #include "esp_log.h"
+#include "test_ui.h"
+
 // SCREEN: ui_Screen1
 void ui_Screen1_screen_init(void);
 lv_obj_t * ui_Screen1;
@@ -120,10 +122,10 @@ void ui_event_wifibtn(lv_event_t * e)
     lv_group_focus_obj(ui_backbtn2);
     }
         if (event_code == LV_EVENT_FOCUSED) {
-            ESP_LOGI("--","对象 %p 获得焦点\n", target);
+            // ESP_LOGI("--","对象 %p 获得焦点\n", target);
             lv_obj_invalidate(lv_scr_act());  // 强制重绘屏幕
         } else if (event_code == LV_EVENT_DEFOCUSED) {
-            ESP_LOGI("--","对象 %p 失去焦点\n", target);
+            // ESP_LOGI("--","对象 %p 失去焦点\n", target);
         }
     // ESP_LOGI("ui_event_wifibtn","ui_event_wifibtn\n");
     // printf("ui_event_wifibtn\n");
@@ -267,4 +269,6 @@ void ui_init(void)
     ui_Screen5_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Screen1);
+    test_picture(ui_Screen5);
+    
 }

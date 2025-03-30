@@ -141,7 +141,7 @@ static void btn_event_cb(lv_event_t *event)
 
     if (NULL != file_name_with_path) {
         /* Get full file name with mount point and folder path */
-        strcpy(file_name_with_path, "A:sdcard/");
+        strcpy(file_name_with_path, "/sdcard/");
         strcat(file_name_with_path, file_name);
 
         /* Set src of image with file name */
@@ -199,7 +199,7 @@ void test_picture(lv_obj_t * ui_Screen4)
 
     /* Align object */
     // lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
-
+    // lv_group_add_obj(group5, list);
     /* Get file name in storage */
     struct dirent *p_dirent = NULL;
     DIR *p_dir_stream = opendir("/sdcard");
@@ -209,9 +209,10 @@ void test_picture(lv_obj_t * ui_Screen4)
         if (NULL != p_dirent) {
             
             lv_obj_t *btn = lv_list_add_btn(list, LV_SYMBOL_IMAGE, strlwr(p_dirent->d_name));
-            lv_group_add_obj(group4, btn);
+            lv_group_add_obj(group5, btn);
+            // lv_group_focus_obj(btn);
             lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_CLICKED, (void *) img);
-            // ESP_LOGE("test_picture", "while");
+            // ESP_LOGE("test_picture", "while%p",btn);
         } else {
             closedir(p_dir_stream);
             // ESP_LOGE("test_picture", "break");

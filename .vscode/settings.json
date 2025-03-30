@@ -98,7 +98,8 @@
     "esp_https_ota.h": "c",
     "esp_partition.h": "c",
     "lv_port_indev.h": "c",
-    "mytinyusb.h": "c"
+    "mytinyusb.h": "c",
+    "test_ui.h": "c"
   },
   "fileheader.Author": "YJRQZ777",
   "fileheader.LastModifiedBy": "YJRQZ777",
@@ -121,5 +122,14 @@
     }
   ],
   "cmake.configureOnOpen": false,
-  "idf.port": "/dev/ttyACM0"
+  "idf.port": "/dev/ttyACM0",
+  "files.exclude": {
+    "**/build/config/sdkconfig.h": false,
+    // "**/.git": true,
+    // "**/.svn": true,
+    // "**/.hg": true,
+    // "**/CVS": true,
+    // "**/.DS_Store": true,
+    // "**/Thumbs.db": true
+  }
 }

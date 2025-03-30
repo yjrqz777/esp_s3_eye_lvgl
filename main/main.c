@@ -73,12 +73,14 @@ void LVGL()
     /* test ui */
     // test_main();
 
-    /*squareline ui init  */
-    ui_init();
-
     /*LVGL控制设备初始化*/
     lv_port_indev_init();
 
+    
+    /*squareline ui init  */
+    ui_init();
+
+    setGroup();
     // lv_obj_t *img = lv_img_create(lv_scr_act());
     // lv_img_set_src(img, "A:sdcard/emo2.png");
     // lv_obj_set_style_img_opa(img, LV_OPA_100, 0);
@@ -140,7 +142,8 @@ void app_main(void)
     // xTaskCreate(MyTinyUSB_Main, "MyTinyUSB_Main", 4096, NULL, 2, NULL);
     xTaskCreate(LVGL, "LVGL", 4096*2, NULL, 4, NULL);
 
-
+    // char* buf_2_1 = heap_caps_malloc(1024000, MALLOC_CAP_SPIRAM);
+    // memset(buf_2_1, 0, 1024000);
     /* while 1*/
     while (true)
     {
@@ -149,6 +152,9 @@ void app_main(void)
         lv_task_handler();
         // lv_tick_inc(10);
         vTaskDelay(pdMS_TO_TICKS(10));     
+        // ESP_LOGI("Heap", "内部剩余：%dKB, PSRAM剩余：%dKB", 
+        //     heap_caps_get_free_size(MALLOC_CAP_INTERNAL)/1024,
+        //     heap_caps_get_free_size(MALLOC_CAP_SPIRAM)/1024);
         // vTaskDelay(10 / portTICK_PERIOD_MS);
         
     }

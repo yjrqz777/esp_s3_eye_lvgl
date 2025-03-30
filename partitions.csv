@@ -1,21 +1,9 @@
-# ESP-IDF Partition Table
 # Name,   Type, SubType, Offset,  Size, Flags
-# 0x1000 4K
-nvs,      data, nvs,     0x9000,  0x4000,
-otadata,  data, ota,     0xd000,  0x2000,
-phy_init, data, phy,     0xf000,  0x1000, 
-factory,  app,  factory, 0x10000, 2M,
-ota_0,    app,  ota_0,   0x310000,2M,
-ota_1,    app,  ota_1,   0x510000,2M,
-graphics,  data, spiffs,         ,  0xF0000, 
-
-
-
-#factory,app,factory,0x10000,1M,
-#ota_0,app,ota_0,0x110000,2M,
-#ota_1,app,ota_1,0x310000,2M,
-
-
-#factory,  0,    0,       0x10000, 1M,
-#ota_0,    0,    ota_0,  0x110000, 1M,
-#ota_1,    0,    ota_1,  0x210000, 1M,
+# Note: if you have increased the bootloader size, make sure to update the offsets to avoid overlap
+  nvs,      data, nvs,     0x9000,  0xA000,
+  #otadata,  data, ota,     0x13000, 0x2000,
+  phy_init, data, phy,     0x13000, 0x4000,
+  factory,  app,  factory, ,        2M,
+  #ota_0,    app,  ota_0,   ,        2M,
+  #ota_1,    app,  ota_1,   ,        2M,
+  storage,  data, fat,     ,        1M,
