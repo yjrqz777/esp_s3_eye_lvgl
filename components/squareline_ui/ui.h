@@ -94,8 +94,6 @@ extern lv_obj_t * ui_Label12;
 void ui_event_nextbtn5(lv_event_t * e);
 extern lv_obj_t * ui_nextbtn5;
 extern lv_obj_t * ui_Label13;
-extern lv_obj_t * ui_TabView1;
-extern lv_obj_t * ui_Container6;
 // CUSTOM VARIABLES
 
 // EVENTS

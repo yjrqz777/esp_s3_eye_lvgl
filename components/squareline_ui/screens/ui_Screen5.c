@@ -55,28 +55,7 @@ void ui_Screen5_screen_init(void)
     lv_label_set_text(ui_Label13, ">");
     lv_obj_set_style_text_font(ui_Label13, &lv_font_montserrat_30, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_TabView1 = lv_tabview_create(ui_Screen5, LV_DIR_TOP, 50);
-    lv_obj_set_width(ui_TabView1, 240);
-    lv_obj_set_height(ui_TabView1, 120);
-    lv_obj_set_x(ui_TabView1, 0);
-    lv_obj_set_y(ui_TabView1, -7);
-    lv_obj_set_align(ui_TabView1, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_TabView1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-
-    ui_Container6 = lv_obj_create(ui_Screen5);
-    lv_obj_remove_style_all(ui_Container6);
-    lv_obj_set_width(ui_Container6, 240);
-    lv_obj_set_height(ui_Container6, 134);
-    lv_obj_set_x(ui_Container6, 0);
-    lv_obj_set_y(ui_Container6, 50);
-    lv_obj_set_align(ui_Container6, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_Container6, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
     lv_obj_add_event_cb(ui_backbtn5, ui_event_backbtn5, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_nextbtn5, ui_event_nextbtn5, LV_EVENT_ALL, NULL);
-
-    // lv_obj_t *img = lv_img_create(ui_Container6);
-    // lv_img_set_src(img, "/sdcard/emo1.png");
 
 }
